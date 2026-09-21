@@ -1,0 +1,6157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#4f46e5">
+<title>Dev Sales Agencies</title>
+
+<style>
+:root{
+  --primary:#4f46e5;
+  --primary-dark:#3730a3;
+  --primary-light:#e0e7ff;
+  --accent:#059669;
+  --accent-light:#d1fae5;
+  --danger:#dc2626;
+  --danger-light:#fee2e2;
+  --warning:#d97706;
+  --purple:#7c3aed;
+  --purple-light:#ede9fe;
+  --bg:#f1f5f9;
+  --card:#fff;
+  --text:#0f172a;
+  --muted:#64748b;
+  --border:#cbd5e1;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  -webkit-tap-highlight-color:transparent;
+}
+
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  padding-bottom:80px;
+}
+
+button,input,select,textarea{
+  font-family:inherit;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.app-header{
+  background:linear-gradient(135deg,var(--primary-dark),var(--primary));
+  color:#fff;
+  padding:12px 16px;
+  text-align:center;
+  position:sticky;
+  top:0;
+  z-index:20;
+  box-shadow:0 4px 12px rgba(79,70,229,.25);
+}
+
+.brand-title{
+  font-size:20px;
+  font-weight:800;
+  text-transform:uppercase;
+}
+
+.sub-title{
+  font-size:12px;
+  opacity:.9;
+  margin-top:3px;
+}
+
+.header-user{
+  position:absolute;
+  right:10px;
+  top:10px;
+  font-size:10px;
+  opacity:.9;
+  cursor:pointer;
+}
+
+.container{
+  max-width:750px;
+  margin:auto;
+  padding:12px;
+}
+
+.tab-content{
+  display:none;
+}
+
+.tab-content.active{
+  display:block!important;
+}
+
+.card{
+  background:var(--card);
+  border-radius:14px;
+  padding:16px;
+  margin-bottom:14px;
+  border:1px solid #e2e8f0;
+  box-shadow:0 2px 6px rgba(0,0,0,.04);
+}
+
+.section-title{
+  font-size:13px;
+  font-weight:800;
+  color:var(--primary);
+  margin-bottom:12px;
+  text-transform:uppercase;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.form-group{
+  margin-bottom:12px;
+}
+
+label{
+  display:block;
+  font-size:11px;
+  font-weight:700;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:5px;
+}
+
+input,select,textarea{
+  width:100%;
+  padding:11px 12px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  font-size:14px;
+  outline:none;
+  background:#fff;
+  color:var(--text);
+}
+
+input:focus,select:focus,textarea:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(79,70,229,.15);
+}
+
+textarea{
+  resize:vertical;
+  min-height:65px;
+}
+
+.btn{
+  width:100%;
+  padding:12px;
+  border:0;
+  border-radius:10px;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+}
+
+.btn-primary{
+  background:var(--primary);
+  color:#fff;
+}
+
+.btn-success{
+  background:var(--accent);
+  color:#fff;
+}
+
+.btn-secondary{
+  background:#64748b;
+  color:#fff;
+}
+
+.btn-danger{
+  background:var(--danger);
+  color:#fff;
+}
+
+.btn-small{
+  width:auto;
+  padding:7px 11px;
+  font-size:12px;
+}
+
+.products-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+.btn-add-product{
+  background:var(--accent);
+  color:#fff;
+  border:0;
+  padding:7px 13px;
+  border-radius:8px;
+  font-size:12px;
+  font-weight:700;
+}
+
+.product-row{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr auto;
+  gap:6px;
+  align-items:center;
+  margin-bottom:8px;
+  background:#f8fafc;
+  padding:10px;
+  border-radius:10px;
+  border:1px solid #e2e8f0;
+}
+
+.product-row input,
+.product-row select{
+  padding:8px;
+  font-size:12px;
+}
+
+.btn-del-row{
+  background:var(--danger-light);
+  color:var(--danger);
+  border:1px solid #fca5a5;
+  border-radius:8px;
+  padding:8px 10px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.invoice-total-box{
+  background:linear-gradient(135deg,#e0e7ff,#ede9fe);
+  border:2px dashed var(--primary);
+  padding:12px 14px;
+  border-radius:10px;
+  margin-top:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.invoice-total-box strong{
+  color:var(--primary-dark);
+}
+
+.badge{
+  display:inline-block;
+  padding:3px 8px;
+  border-radius:6px;
+  font-size:10px;
+  font-weight:700;
+}
+
+.badge-area{
+  background:var(--purple-light);
+  color:var(--purple);
+}
+
+.badge-code{
+  background:var(--primary-light);
+  color:var(--primary-dark);
+}
+
+.badge-type{
+  background:#fef3c7;
+  color:#b45309;
+}
+
+.badge-admin{
+  background:#fee2e2;
+  color:#b91c1c;
+}
+
+.badge-user{
+  background:#dbeafe;
+  color:#1d4ed8;
+}
+
+.badge-active{
+  background:#d1fae5;
+  color:#047857;
+}
+
+.badge-disabled{
+  background:#e2e8f0;
+  color:#475569;
+}
+
+.master-item{
+  background:#fff;
+  border-radius:12px;
+  padding:12px;
+  margin-bottom:10px;
+  border:1px solid #e2e8f0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.master-info h4{
+  font-size:15px;
+}
+
+.master-info p{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:3px;
+}
+
+.area-group-header{
+  font-size:13px;
+  font-weight:800;
+  color:var(--purple);
+  background:var(--purple-light);
+  padding:6px 12px;
+  border-radius:8px;
+  margin:12px 0 8px;
+  display:inline-block;
+}
+
+.summary-table-wrapper{
+  width:100%;
+  overflow-x:auto;
+}
+
+.summary-table{
+  width:100%;
+  min-width:560px;
+  border-collapse:collapse;
+  font-size:12px;
+}
+
+.summary-table th,
+.summary-table td{
+  border:1px solid var(--border);
+  padding:8px;
+}
+
+.summary-table th{
+  background:#f8fafc;
+  color:var(--muted);
+  font-size:10px;
+  text-transform:uppercase;
+}
+
+.summary-table .total-row td{
+  background:#eef2ff;
+  color:var(--primary-dark);
+  font-weight:800;
+}
+
+.shop-header{
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+  border-radius:10px;
+  padding:10px;
+  margin-bottom:8px;
+}
+
+.nav-bar{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:65px;
+  background:#fff;
+  border-top:1px solid var(--border);
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  z-index:1000;
+  box-shadow:0 -2px 10px rgba(0,0,0,.05);
+  overflow-x:auto;
+}
+
+.nav-item{
+  flex:1;
+  min-width:55px;
+  text-align:center;
+  padding:6px 2px;
+  color:var(--muted);
+  font-size:9px;
+  font-weight:700;
+  cursor:pointer;
+  border:0;
+  background:none;
+}
+
+.nav-item.active{
+  color:var(--primary);
+}
+
+.nav-item svg{
+  display:block;
+  margin:0 auto 3px;
+  width:19px;
+  height:19px;
+  fill:currentColor;
+}
+
+.login-screen{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(135deg,#312e81,#4f46e5);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:9999;
+}
+
+.login-box{
+  width:100%;
+  max-width:400px;
+  background:#fff;
+  border-radius:20px;
+  padding:25px;
+  box-shadow:0 20px 50px rgba(0,0,0,.25);
+}
+
+.login-logo{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.login-logo h1{
+  color:var(--primary-dark);
+  font-size:24px;
+}
+
+.login-logo p{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:4px;
+}
+
+.login-error{
+  background:var(--danger-light);
+  color:var(--danger);
+  padding:9px;
+  border-radius:8px;
+  font-size:12px;
+  margin-bottom:12px;
+  display:none;
+}
+
+.access-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.access-actions{
+  display:flex;
+  gap:5px;
+  flex-wrap:wrap;
+}
+
+.offer-box{
+  grid-column:1/-1;
+}
+
+@media(max-width:600px){
+
+  .product-row{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .product-row>div:first-child{
+    grid-column:1/-1;
+  }
+
+  .product-row .btn-del-row{
+    grid-column:1/-1;
+  }
+
+  .header-user{
+    position:static;
+    margin-top:3px;
+  }
+
+  .nav-item{
+    min-width:58px;
+  }
+}
+
+@media print{
+
+  body *{
+    visibility:hidden;
+  }
+
+  #factorySummaryContent,
+  #factorySummaryContent *{
+    visibility:visible;
+  }
+
+  #factorySummaryContent{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+  }
+
+  .no-print,
+  .app-header,
+  .nav-bar,
+  .btn-pdf{
+    display:none!important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= LOGIN ================= -->
+
+<div id="loginScreen" class="login-screen">
+
+  <div class="login-box">
+
+    <div class="login-logo">
+      <h1>Dev Sales Agencies</h1>
+      <p>Sales & Order Management</p>
+    </div>
+
+    <div id="loginError" class="login-error"></div>
+
+    <form onsubmit="login(event)">
+
+      <div class="form-group">
+        <label>Username</label>
+        <input
+          type="text"
+          id="loginUsername"
+          autocomplete="username"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input
+          type="password"
+          id="loginPassword"
+          autocomplete="current-password"
+          required
+        >
+      </div>
+
+      <button class="btn btn-primary" type="submit">
+        🔐 Login
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+
+<!-- ================= MAIN APPLICATION ================= -->
+
+<div id="app" class="hidden">
+
+<header class="app-header">
+
+  <div class="brand-title">
+    Dev Sales Agencies
+  </div>
+
+  <div class="sub-title" id="headerTitle">
+    New Order Entry
+  </div>
+
+  <div
+    class="header-user"
+    onclick="logout()"
+    title="Logout"
+  >
+    👤 <span id="loggedUser"></span> | Logout
+  </div>
+
+</header>
+
+
+<div class="container">
+
+<!-- ================= NEW ORDER ================= -->
+
+<div id="addTab" class="tab-content active">
+
+<form id="orderForm" onsubmit="saveOrder(event)">
+
+<input type="hidden" id="editOrderId">
+
+<div class="card">
+
+<div class="section-title">
+🏪 Select Shop
+</div>
+
+<div class="form-group">
+
+<label>1. Select / Type Area</label>
+
+<input
+  type="text"
+  id="areaInput"
+  list="areaList"
+  placeholder="Type or select Area..."
+  oninput="onAreaSelect()"
+  required
+>
+
+<datalist id="areaList"></datalist>
+
+</div>
+
+
+<div class="form-group">
+
+<label>2. Choose Registered Shop</label>
+
+<select
+  id="shopSelect"
+  onchange="onShopSelect()"
+  required
+  disabled
+>
+<option value="">-- Select Area First --</option>
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Date of Order</label>
+
+<input
+  type="date"
+  id="orderDate"
+  onchange="refreshProductRatesForDate(); refreshAllOffers()"
+  required
+>
+
+</div>
+
+
+<div style="background:#f8fafc;padding:12px;border-radius:10px">
+
+<p style="font-size:12px;margin-bottom:4px">
+<strong>Shop Code:</strong>
+<span id="dispShopCode" class="badge badge-code">-</span>
+</p>
+
+<p style="font-size:12px;margin-bottom:4px">
+<strong>Area:</strong>
+<span id="dispArea" class="badge badge-area">-</span>
+</p>
+
+<p style="font-size:12px;margin-bottom:4px">
+<strong>Owner:</strong>
+<span id="dispShopOwner">-</span>
+</p>
+
+<p style="font-size:12px;margin-bottom:4px">
+<strong>Mobile:</strong>
+<span id="dispMobileNo">-</span>
+</p>
+
+<p style="font-size:12px">
+<strong>Address:</strong>
+<span id="dispAddress">-</span>
+</p>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="products-header">
+
+<div class="section-title" style="margin-bottom:0">
+📦 Order Items
+</div>
+
+<button
+  type="button"
+  class="btn-add-product"
+  onclick="addProductRow()"
+>
++ Add Product
+</button>
+
+</div>
+
+<div id="productRowsContainer"></div>
+
+<div class="invoice-total-box">
+
+<strong>
+TOTAL INVOICE AMOUNT
+</strong>
+
+<strong>
+₹<span id="grandInvoicePrice">0.00</span>
+</strong>
+
+</div>
+
+</div>
+
+
+<button
+  type="submit"
+  id="saveOrderBtn"
+  class="btn btn-primary"
+>
+💾 Save Daily Order
+</button>
+
+</form>
+
+</div>
+
+
+<!-- ================= HISTORY ================= -->
+
+<div id="historyTab" class="tab-content">
+
+<div class="no-print" style="margin-bottom:12px">
+
+<input
+  type="text"
+  id="filterSearch"
+  placeholder="🔍 Search Shop, Area or Code..."
+  oninput="renderHistory()"
+>
+
+</div>
+
+<div id="historyList"></div>
+
+</div>
+
+
+<!-- ================= FACTORY ================= -->
+
+<div id="factoryTab" class="tab-content">
+
+<div class="card no-print">
+
+<div class="section-title">
+🏭 Factory Dispatch Summary
+</div>
+
+<div class="form-group">
+
+<label>Select Summary Date</label>
+
+<input
+  type="date"
+  id="factoryDate"
+  onchange="renderFactorySummary()"
+>
+
+</div>
+
+<button
+  type="button"
+  class="btn btn-success btn-pdf"
+  onclick="triggerPDFExport()"
+>
+📄 Save / Download PDF
+</button>
+
+</div>
+
+<div id="factorySummaryContent"></div>
+
+</div>
+
+
+<!-- ================= ANALYTICS ================= -->
+
+<div id="perfTab" class="tab-content">
+
+<div class="card">
+
+<div class="section-title">
+📈 Analytics Filter
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+
+<div>
+<label>Date</label>
+<input
+  type="date"
+  id="perfDate"
+  onchange="renderPerformance()"
+>
+</div>
+
+<div>
+<label>Month</label>
+<input
+  type="month"
+  id="perfMonth"
+  onchange="renderPerformance()"
+>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="section-title">
+📅 Day-Wise Sales
+</div>
+
+<div id="perfDaySummary"></div>
+
+</div>
+
+
+<div class="card">
+
+<div class="section-title">
+🗓️ Month-Wise Sales & Profit
+</div>
+
+<div id="perfMonthSummary"></div>
+
+</div>
+
+
+<div class="card">
+
+<div class="section-title">
+📊 Product-Wise Analytics
+</div>
+
+<div id="perfProductSummary"></div>
+
+</div>
+
+<div class="card">
+
+<div class="section-title">
+🏪 Shop-Wise Overall Order Summary
+</div>
+
+<div id="perfShopSummary"></div>
+
+</div>
+
+</div>
+
+
+<!-- ================= SHOPS ================= -->
+
+<div id="shopsMasterTab" class="tab-content">
+
+<div id="shopAddCard" class="card">
+
+<div class="section-title">
+➕ Add New Shop
+</div>
+
+<form onsubmit="saveShopMaster(event)">
+
+<input type="hidden" id="mShopEditId">
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+
+<div class="form-group">
+<label>Shop Code</label>
+<input id="mShopCode" required>
+</div>
+
+<div class="form-group">
+<label>Area</label>
+<input id="mShopArea" required>
+</div>
+
+</div>
+
+<div class="form-group">
+<label>Shop Name</label>
+<input id="mShopName" required>
+</div>
+
+<div class="form-group">
+<label>Owner Name</label>
+<input id="mShopOwner" required>
+</div>
+
+<div class="form-group">
+<label>Mobile</label>
+<input type="tel" id="mMobileNo" required>
+</div>
+
+<div class="form-group">
+<label>Address</label>
+<textarea id="mShopAddress" required></textarea>
+</div>
+
+<button type="submit" id="saveShopBtn" class="btn btn-primary">
+➕ Save Shop
+</button>
+
+<button
+  type="button"
+  id="cancelShopEditBtn"
+  class="btn btn-secondary hidden"
+  onclick="cancelShopEdit()"
+>
+✖ Cancel Edit
+</button>
+
+</form>
+
+</div>
+
+<div class="section-title">
+🏪 Registered Shops
+</div>
+
+<div id="shopsMasterList"></div>
+
+</div>
+
+
+<!-- ================= PRODUCTS ================= -->
+
+<div id="productsMasterTab" class="tab-content">
+
+<div id="productAddCard" class="card">
+
+<div class="section-title">
+➕ Add New Product
+</div>
+
+<form onsubmit="saveProductMaster(event)">
+
+<input type="hidden" id="mProdEditId">
+<input type="hidden" id="mProdEditRateId">
+
+<div class="form-group">
+<label>Product Name</label>
+<input id="mProdName" required>
+</div>
+
+<div class="form-group">
+<label>Product Type</label>
+<input id="mProdType" required>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+
+<div class="form-group">
+<label>Purchase Rate</label>
+<input
+  type="number"
+  step="0.01"
+  min="0"
+  id="mProdPurchase"
+  required
+>
+</div>
+
+<div class="form-group">
+<label>Selling Price</label>
+<input
+  type="number"
+  step="0.01"
+  min="0"
+  id="mProdPrice"
+  required
+>
+</div>
+
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+
+<div class="form-group">
+<label>Effective From</label>
+<input
+  type="date"
+  id="mProdEffectiveFrom"
+  required
+>
+</div>
+
+<div class="form-group">
+<label>Effective To</label>
+<input
+  type="date"
+  id="mProdEffectiveTo"
+>
+</div>
+
+</div>
+
+<p style="font-size:11px;color:var(--muted);margin-top:-2px">
+Leave Effective To blank when the rates are currently in scope.
+</p>
+
+<button
+  type="submit"
+  id="saveProductBtn"
+  class="btn btn-primary"
+>
+➕ Save Product
+</button>
+
+<button
+  type="button"
+  id="cancelProductEditBtn"
+  class="btn btn-secondary hidden"
+  onclick="cancelProductEdit()"
+>
+✖ Cancel Edit
+</button>
+
+</form>
+
+</div>
+
+<div class="section-title">
+📦 Product Catalog
+</div>
+
+<div id="productsMasterList"></div>
+
+</div>
+
+
+<!-- ================= OFFERS ================= -->
+
+<div id="offersMasterTab" class="tab-content">
+
+<div id="offerAddCard" class="card">
+
+<div class="section-title">
+🎁 Add Product Tiered Offer
+</div>
+
+<form onsubmit="saveOfferMaster(event)">
+
+<div class="form-group">
+
+<label>Product</label>
+
+<select id="mOfferProduct" required>
+<option value="">Select Product</option>
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Offer Name / Tier Label</label>
+
+<input
+  id="mOfferName"
+  placeholder="e.g. Buy 5 Get 1 Bucket"
+  required
+>
+
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+
+<div class="form-group">
+
+<label>Minimum Buy Quantity</label>
+
+<input
+  type="number"
+  min="1"
+  step="1"
+  id="mOfferBuyQty"
+  placeholder="e.g. 5"
+  required
+>
+
+</div>
+
+<div class="form-group">
+
+<label>Gift Quantity</label>
+
+<input
+  type="number"
+  min="1"
+  step="1"
+  id="mOfferGiftQty"
+  placeholder="e.g. 1"
+  required
+>
+
+</div>
+
+</div>
+
+<div class="form-group">
+
+<label>Gift Description</label>
+
+<input
+  id="mOfferGiftDescription"
+  placeholder="e.g. Bucket"
+  required
+>
+
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+
+<div class="form-group">
+
+<label>Effective From</label>
+
+<input
+  type="date"
+  id="mOfferFrom"
+  required
+>
+
+</div>
+
+<div class="form-group">
+
+<label>Effective To</label>
+
+<input
+  type="date"
+  id="mOfferTo"
+>
+
+<small style="color:var(--muted)">
+Blank = currently in scope
+</small>
+
+</div>
+
+</div>
+
+<button type="submit" class="btn btn-primary">
+➕ Save Offer Tier
+</button>
+
+</form>
+
+</div>
+
+<div class="section-title">
+🎁 Product Tiered Offers Catalog
+</div>
+
+<div id="offersMasterList"></div>
+
+</div>
+
+
+<!-- ================= MANAGE ACCESS ================= -->
+
+<div id="accessTab" class="tab-content">
+
+<div class="card">
+
+<div class="section-title">
+🔐 Manage Access
+</div>
+
+<form onsubmit="saveUser(event)">
+
+<div class="form-group">
+
+<label>Username</label>
+
+<input id="newUsername" required>
+
+</div>
+
+<div class="form-group">
+
+<label>Password</label>
+
+<input
+  type="password"
+  id="newPassword"
+  minlength="4"
+  required
+>
+
+</div>
+
+<div class="form-group">
+
+<label>Role</label>
+
+<select id="newRole">
+
+<option value="user">
+User
+</option>
+
+<option value="admin">
+Admin
+</option>
+
+</select>
+
+</div>
+
+<button type="submit" class="btn btn-primary">
+➕ Add User
+</button>
+
+</form>
+
+</div>
+
+<div class="section-title">
+👥 Registered Users
+</div>
+
+<div id="usersList"></div>
+
+</div>
+
+
+<!-- ================= SETTINGS ================= -->
+
+<div id="settingsTab" class="tab-content">
+
+<div class="card">
+
+<div class="section-title">
+⚙️ Data Backup
+</div>
+
+<p style="font-size:12px;color:var(--muted);margin-bottom:12px">
+Backup Shops, Products, Orders, Users and Offers as a JSON file.
+</p>
+
+<button
+  type="button"
+  class="btn btn-primary"
+  onclick="exportAppData()"
+>
+📥 Export All Data
+</button>
+
+<div class="form-group" style="margin-top:15px">
+
+<label>Restore Backup</label>
+
+<input
+  type="file"
+  id="importFile"
+  accept=".json"
+  onchange="importAppData(event)"
+>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="section-title" style="color:var(--danger)">
+⚠️ Danger Zone
+</div>
+
+<button
+  type="button"
+  class="btn btn-danger"
+  onclick="clearAllData()"
+>
+🗑️ Clear All Application Data
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= NAVIGATION ================= -->
+
+<nav class="nav-bar no-print">
+
+<button
+  type="button"
+  class="nav-item active"
+  id="navAdd"
+  data-tab="add"
+>
+<span>➕</span>
+<div>Order</div>
+</button>
+
+<button
+  type="button"
+  class="nav-item"
+  id="navHistory"
+  data-tab="history"
+>
+<span>📋</span>
+<div>History</div>
+</button>
+
+<button
+  type="button"
+  class="nav-item"
+  id="navFactory"
+  data-tab="factory"
+>
+<span>🏭</span>
+<div>Factory</div>
+</button>
+
+<button
+  type="button"
+  class="nav-item"
+  id="navPerf"
+  data-tab="perf"
+>
+<span>📊</span>
+<div>Analytics</div>
+</button>
+
+<button
+  type="button"
+  class="nav-item"
+  id="navShops"
+  data-tab="shops"
+>
+<span>🏪</span>
+<div>Shops</div>
+</button>
+
+<button
+  type="button"
+  class="nav-item"
+  id="navProducts"
+  data-tab="products"
+>
+<span>📦</span>
+<div>Products</div>
+</button>
+
+<button
+  type="button"
+  class="nav-item"
+  id="navOffers"
+  data-tab="offers"
+>
+<span>🎁</span>
+<div>Offers</div>
+</button>
+
+<button
+  type="button"
+  class="nav-item"
+  id="navAccess"
+  data-tab="access"
+>
+<span>🔐</span>
+<div>Access</div>
+</button>
+
+<button
+  type="button"
+  class="nav-item"
+  id="navSettings"
+  data-tab="settings"
+>
+<span>⚙️</span>
+<div>Backup</div>
+</button>
+
+</nav>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   AUTHENTICATION
+========================================================= */
+
+const DEFAULT_USERS = [
+  {
+    id:1,
+    username:"admin",
+    password:"admin123",
+    role:"admin",
+    active:true
+  }
+];
+
+function getUsers(){
+
+  try{
+
+    const data = JSON.parse(
+      localStorage.getItem("app_users") || "null"
+    );
+
+    if(!Array.isArray(data) || !data.length){
+
+      localStorage.setItem(
+        "app_users",
+        JSON.stringify(DEFAULT_USERS)
+      );
+
+      return DEFAULT_USERS;
+    }
+
+    return data;
+
+  }catch(e){
+
+    return DEFAULT_USERS;
+
+  }
+}
+
+function getCurrentUser(){
+
+  try{
+
+    return JSON.parse(
+      sessionStorage.getItem("current_user") || "null"
+    );
+
+  }catch(e){
+
+    return null;
+
+  }
+}
+
+function isAdmin(){
+
+  const user = getCurrentUser();
+
+  return !!user && user.role === "admin";
+}
+
+function isUser(){
+
+  const user = getCurrentUser();
+
+  return !!user && user.role === "user";
+}
+
+function login(e){
+
+  e.preventDefault();
+
+  const username =
+    document.getElementById("loginUsername").value.trim();
+
+  const password =
+    document.getElementById("loginPassword").value;
+
+  const user = getUsers().find(
+    u =>
+      String(u.username || "").toLowerCase() === username.toLowerCase() &&
+      u.password === password &&
+      u.active !== false
+  );
+
+  const error =
+    document.getElementById("loginError");
+
+  if(!user){
+
+    error.style.display = "block";
+
+    error.innerText =
+      "Invalid username/password or account disabled.";
+
+    return;
+  }
+
+  sessionStorage.setItem(
+    "current_user",
+    JSON.stringify({
+      id:user.id,
+      username:user.username,
+      role:user.role
+    })
+  );
+
+  document
+    .getElementById("loginScreen")
+    .classList.add("hidden");
+
+  document
+    .getElementById("app")
+    .classList.remove("hidden");
+
+  initializeApp();
+}
+
+function logout(){
+
+  if(confirm("Do you want to logout?")){
+
+    sessionStorage.removeItem("current_user");
+
+    location.reload();
+
+  }
+}
+
+
+/* =========================================================
+   PERMISSION CONTROL
+========================================================= */
+
+function applyPermissions(){
+
+  const admin = isAdmin();
+
+  document
+    .getElementById("navAccess")
+    ?.classList.toggle("hidden", !admin);
+
+  document
+    .getElementById("navSettings")
+    ?.classList.toggle("hidden", !admin);
+
+  document
+    .getElementById("navOffers")
+    ?.classList.toggle("hidden", !admin);
+
+  document
+    .getElementById("shopAddCard")
+    ?.classList.toggle("hidden", !admin);
+
+  document
+    .getElementById("productAddCard")
+    ?.classList.toggle("hidden", !admin);
+
+  document
+    .getElementById("offerAddCard")
+    ?.classList.toggle("hidden", !admin);
+}
+
+function requireAdmin(){
+
+  if(!isAdmin()){
+
+    alert("Admin access required.");
+
+    return false;
+  }
+
+  return true;
+}
+
+
+/* =========================================================
+   OFFERS
+========================================================= */
+
+function getOffers(){
+
+  try{
+
+    const data =
+      JSON.parse(
+        localStorage.getItem("m_offers") || "[]"
+      );
+
+    return Array.isArray(data) ? data : [];
+
+  }catch(e){
+
+    return [];
+
+  }
+}
+
+function saveOffersData(data){
+
+  localStorage.setItem(
+    "m_offers",
+    JSON.stringify(data)
+  );
+
+  renderOffersMaster();
+  renderPerformance();
+}
+
+function getActiveOffersForProduct(productId, orderDate){
+
+  if(!productId || !orderDate)
+    return [];
+
+  return getOffers()
+    .filter(o =>
+      String(o.productId) === String(productId) &&
+      o.active !== false &&
+      o.effectiveFrom &&
+      orderDate >= o.effectiveFrom &&
+      (!o.effectiveTo || orderDate <= o.effectiveTo)
+    )
+    .sort(
+      (a,b) =>
+        Number(b.buyQty) - Number(a.buyQty)
+    );
+}
+
+function populateOfferProductSelect(){
+
+  const select =
+    document.getElementById("mOfferProduct");
+
+  if(!select) return;
+
+  const products = getProducts();
+
+  const currentValue = select.value;
+
+  select.innerHTML =
+    `<option value="">Select Product</option>` +
+    products.map(p => `
+      <option value="${p.id}">
+        ${p.name} - ${p.type || "General"}
+      </option>
+    `).join("");
+
+  if(currentValue){
+    select.value = currentValue;
+  }
+}
+
+function saveOfferMaster(e){
+
+  e.preventDefault();
+
+  if(!requireAdmin()) return;
+
+  const productId =
+    document.getElementById("mOfferProduct").value;
+
+  const offerName =
+    document.getElementById("mOfferName").value.trim();
+
+  const buyQty =
+    Number(document.getElementById("mOfferBuyQty").value);
+
+  const giftQty =
+    Number(document.getElementById("mOfferGiftQty").value);
+
+  const giftDescription =
+    document
+      .getElementById("mOfferGiftDescription")
+      .value
+      .trim();
+
+  const effectiveFrom =
+    document.getElementById("mOfferFrom").value;
+
+  const effectiveTo =
+    document.getElementById("mOfferTo").value;
+
+  if(!productId){
+
+    alert("Please select a product.");
+
+    return;
+  }
+
+  if(
+    !offerName ||
+    buyQty <= 0 ||
+    giftQty <= 0 ||
+    !giftDescription ||
+    !effectiveFrom
+  ){
+
+    alert("Please enter all offer details.");
+
+    return;
+  }
+
+  if(
+    effectiveTo &&
+    effectiveTo < effectiveFrom
+  ){
+
+    alert(
+      "Effective To cannot be earlier than Effective From."
+    );
+
+    return;
+  }
+
+  const offers = getOffers();
+
+  const overlap = offers.some(o => {
+
+    if(
+      String(o.productId) !== String(productId) ||
+      o.active === false ||
+      Number(o.buyQty) !== Number(buyQty)
+    ){
+      return false;
+    }
+
+    const existingFrom =
+      o.effectiveFrom;
+
+    const existingTo =
+      o.effectiveTo || "9999-12-31";
+
+    const newFrom =
+      effectiveFrom;
+
+    const newTo =
+      effectiveTo || "9999-12-31";
+
+    return (
+      newFrom <= existingTo &&
+      newTo >= existingFrom
+    );
+  });
+
+  if(overlap){
+
+    alert(
+      "An offer tier with this exact Buy Quantity already exists for this product in the selected date range."
+    );
+
+    return;
+  }
+
+  offers.push({
+    id:Date.now(),
+    productId,
+    offerName,
+    buyQty,
+    giftQty,
+    giftDescription,
+    effectiveFrom,
+    effectiveTo,
+    active:true
+  });
+
+  saveOffersData(offers);
+
+  e.target.reset();
+
+  document.getElementById("mOfferFrom").value =
+    new Date().toISOString().slice(0,10);
+
+  alert("Offer tier saved successfully.");
+}
+
+function deleteOffer(id){
+
+  if(!requireAdmin()) return;
+
+  if(!confirm("Delete this offer tier permanently?"))
+    return;
+
+  saveOffersData(
+    getOffers().filter(
+      o => String(o.id) !== String(id)
+    )
+  );
+}
+
+function renderOffersMaster(){
+
+  const container =
+    document.getElementById("offersMasterList");
+
+  if(!container) return;
+
+  populateOfferProductSelect();
+
+  const products = getProducts();
+
+  const productMap = {};
+
+  products.forEach(p => {
+    productMap[String(p.id)] = p;
+  });
+
+  const offers = getOffers();
+
+  if(!offers.length){
+
+    container.innerHTML =
+      `<div class="card">
+        <p style="text-align:center;color:#94a3b8">
+          No offers configured.
+        </p>
+      </div>`;
+
+    return;
+  }
+
+  const grouped = {};
+
+  offers.forEach(o => {
+
+    const pId = String(o.productId);
+
+    if(!grouped[pId]){
+      grouped[pId] = [];
+    }
+
+    grouped[pId].push(o);
+
+  });
+
+  let html = "";
+
+  Object.keys(grouped).forEach(pId => {
+
+    const product =
+      productMap[pId];
+
+    const prodOffers =
+      grouped[pId].slice().sort(
+        (a,b) =>
+          Number(a.buyQty) - Number(b.buyQty)
+      );
+
+    html += `
+      <div class="card">
+
+        <div class="shop-header">
+
+          <strong>
+            📦 ${product?.name || "Unknown Product"}
+          </strong>
+
+          <span class="badge badge-type">
+            ${product?.type || "General"}
+          </span>
+
+        </div>
+
+        <div class="summary-table-wrapper" style="margin-top:8px">
+
+          <table class="summary-table">
+
+            <thead>
+
+              <tr>
+                <th>Offer Name</th>
+                <th style="text-align:center">Buy Qty</th>
+                <th style="text-align:center">Gift</th>
+                <th>Effective Period</th>
+                <th style="text-align:center">Action</th>
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              ${prodOffers.map(o => `
+
+                <tr>
+
+                  <td>
+                    <strong>${o.offerName}</strong>
+                  </td>
+
+                  <td style="text-align:center">
+                    <span class="badge badge-code">
+                      ${o.buyQty}+
+                    </span>
+                  </td>
+
+                  <td style="text-align:center">
+                    🎁 ${o.giftQty} ${o.giftDescription}
+                  </td>
+
+                  <td style="font-size:11px">
+                    ${o.effectiveFrom}
+                    →
+                    ${o.effectiveTo || "Current"}
+                  </td>
+
+                  <td style="text-align:center">
+
+                    <button
+                      type="button"
+                      class="btn btn-danger btn-small"
+                      onclick="deleteOffer('${o.id}')"
+                    >
+                      🗑️
+                    </button>
+
+                  </td>
+
+                </tr>
+
+              `).join("")}
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+    `;
+
+  });
+
+  container.innerHTML = html;
+}
+
+
+/* =========================================================
+   DATA
+========================================================= */
+
+function getShops(){
+
+  try{
+
+    const data =
+      JSON.parse(
+        localStorage.getItem("m_shops") || "[]"
+      );
+
+    return Array.isArray(data) ? data : [];
+
+  }catch(e){
+
+    return [];
+
+  }
+}
+
+function saveShopsData(data){
+
+  localStorage.setItem(
+    "m_shops",
+    JSON.stringify(data)
+  );
+
+  populateAreaLOV();
+  renderShopsList();
+}
+
+function getProducts(){
+
+  try{
+
+    const data =
+      JSON.parse(
+        localStorage.getItem("m_products") || "[]"
+      );
+
+    return Array.isArray(data) ? data : [];
+
+  }catch(e){
+
+    return [];
+
+  }
+}
+
+function saveProductsData(data){
+
+  localStorage.setItem(
+    "m_products",
+    JSON.stringify(data)
+  );
+
+  renderProductsList();
+  refreshProductSelects();
+  populateOfferProductSelect();
+  renderOffersMaster();
+}
+
+function getOrders(){
+
+  try{
+
+    const data =
+      JSON.parse(
+        localStorage.getItem("app_orders") || "[]"
+      );
+
+    return Array.isArray(data) ? data : [];
+
+  }catch(e){
+
+    return [];
+
+  }
+}
+
+function saveOrdersData(data){
+
+  localStorage.setItem(
+    "app_orders",
+    JSON.stringify(data)
+  );
+
+  renderHistory();
+}
+
+
+/* =========================================================
+   TAB CONTROL
+========================================================= */
+
+function switchTab(tab){
+
+  const tabs = {
+
+    add:{
+      content:"addTab",
+      nav:"navAdd",
+      title:"New Order Entry"
+    },
+
+    history:{
+      content:"historyTab",
+      nav:"navHistory",
+      title:"Order History"
+    },
+
+    factory:{
+      content:"factoryTab",
+      nav:"navFactory",
+      title:"Factory Summary"
+    },
+
+    perf:{
+      content:"perfTab",
+      nav:"navPerf",
+      title:"Performance Analytics"
+    },
+
+    shops:{
+      content:"shopsMasterTab",
+      nav:"navShops",
+      title:"Shops Master"
+    },
+
+    products:{
+      content:"productsMasterTab",
+      nav:"navProducts",
+      title:"Products Master"
+    },
+
+    offers:{
+      content:"offersMasterTab",
+      nav:"navOffers",
+      title:"Offers Master"
+    },
+
+    access:{
+      content:"accessTab",
+      nav:"navAccess",
+      title:"Manage Access"
+    },
+
+    settings:{
+      content:"settingsTab",
+      nav:"navSettings",
+      title:"Backup & Settings"
+    }
+
+  };
+
+  const target = tabs[tab];
+
+  if(!target) return;
+
+  if(
+    [
+      "access",
+      "settings",
+      "shops",
+      "products",
+      "offers"
+    ].includes(tab) &&
+    !isAdmin()
+  ){
+
+    alert("Admin access required.");
+
+    return;
+  }
+
+  document
+    .querySelectorAll(".tab-content")
+    .forEach(
+      x => x.classList.remove("active")
+    );
+
+  document
+    .querySelectorAll(".nav-item")
+    .forEach(
+      x => x.classList.remove("active")
+    );
+
+  document
+    .getElementById(target.content)
+    ?.classList.add("active");
+
+  document
+    .getElementById(target.nav)
+    ?.classList.add("active");
+
+  document.getElementById("headerTitle").innerText =
+    target.title;
+
+  if(tab === "history")
+    renderHistory();
+
+  if(tab === "factory")
+    renderFactorySummary();
+
+  if(tab === "perf")
+    renderPerformance();
+
+  if(tab === "shops")
+    renderShopsList();
+
+  if(tab === "products")
+    renderProductsList();
+
+  if(tab === "offers")
+    renderOffersMaster();
+
+  if(tab === "access")
+    renderUsers();
+
+  if(tab === "add"){
+
+    populateAreaLOV();
+    refreshProductSelects();
+
+  }
+}
+
+
+/* =========================================================
+   SHOP MASTER
+========================================================= */
+
+function saveShopMaster(e){
+
+  e.preventDefault();
+
+  if(!requireAdmin()) return;
+
+  const editId =
+    document.getElementById("mShopEditId").value;
+
+  const code =
+    document.getElementById("mShopCode").value.trim();
+
+  const area =
+    document.getElementById("mShopArea").value.trim();
+
+  const name =
+    document.getElementById("mShopName").value.trim();
+
+  const owner =
+    document.getElementById("mShopOwner").value.trim();
+
+  const mobile =
+    document.getElementById("mMobileNo").value.trim();
+
+  const address =
+    document.getElementById("mShopAddress").value.trim();
+
+  const shops = getShops();
+
+  if(
+    shops.some(
+      s =>
+        String(s.id) !== String(editId) &&
+        String(s.code || "").toLowerCase() ===
+        code.toLowerCase()
+    )
+  ){
+
+    alert("Shop code already exists.");
+
+    return;
+  }
+
+  if(editId){
+
+    const shop =
+      shops.find(
+        s => String(s.id) === String(editId)
+      );
+
+    if(!shop){
+
+      alert("Shop not found.");
+
+      return;
+    }
+
+    shop.code = code;
+    shop.area = area;
+    shop.name = name;
+    shop.owner = owner;
+    shop.mobile = mobile;
+    shop.address = address;
+
+    saveShopsData(shops);
+    resetShopForm();
+
+    alert("✅ Shop details updated successfully.");
+
+    return;
+  }
+
+  shops.push({
+    id:Date.now(),
+    code,
+    area,
+    name,
+    owner,
+    mobile,
+    address
+  });
+
+  saveShopsData(shops);
+  resetShopForm();
+
+  alert("Shop added successfully.");
+}
+
+function editShop(id){
+
+  if(!requireAdmin()) return;
+
+  const s =
+    getShops().find(
+      x => String(x.id) === String(id)
+    );
+
+  if(!s){
+
+    alert("Shop not found.");
+
+    return;
+  }
+
+  document.getElementById("mShopEditId").value = s.id;
+  document.getElementById("mShopCode").value = s.code || "";
+  document.getElementById("mShopArea").value = s.area || "";
+  document.getElementById("mShopName").value = s.name || "";
+  document.getElementById("mShopOwner").value = s.owner || "";
+  document.getElementById("mMobileNo").value = s.mobile || "";
+  document.getElementById("mShopAddress").value = s.address || "";
+
+  document.getElementById("saveShopBtn").innerText =
+    "💾 Save Shop Changes";
+
+  document
+    .getElementById("cancelShopEditBtn")
+    .classList.remove("hidden");
+
+  document
+    .getElementById("shopAddCard")
+    .scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+}
+
+function resetShopForm(){
+
+  document
+    .querySelector("#shopAddCard form")
+    ?.reset();
+
+  document.getElementById("mShopEditId").value = "";
+
+  document.getElementById("saveShopBtn").innerText =
+    "➕ Save Shop";
+
+  document
+    .getElementById("cancelShopEditBtn")
+    .classList.add("hidden");
+}
+
+function cancelShopEdit(){
+  resetShopForm();
+}
+
+function deleteShop(id){
+
+  if(!requireAdmin()) return;
+
+  if(!confirm("Delete this shop?"))
+    return;
+
+  saveShopsData(
+    getShops().filter(
+      s => String(s.id) !== String(id)
+    )
+  );
+}
+
+function renderShopsList(){
+
+  const container =
+    document.getElementById("shopsMasterList");
+
+  if(!container) return;
+
+  const shops = getShops();
+
+  if(!shops.length){
+
+    container.innerHTML =
+      `<p style="color:#94a3b8;font-size:12px">
+        No shops registered.
+      </p>`;
+
+    return;
+  }
+
+  const grouped = {};
+
+  shops.forEach(s => {
+
+    const area =
+      s.area || "Unassigned Area";
+
+    if(!grouped[area])
+      grouped[area] = [];
+
+    grouped[area].push(s);
+
+  });
+
+  let html = "";
+
+  Object.keys(grouped)
+    .sort()
+    .forEach(area => {
+
+      html += `
+        <div class="area-group-header">
+          📍 ${area}
+        </div>
+      `;
+
+      grouped[area].forEach(s => {
+
+        html += `
+          <div class="master-item">
+
+            <div class="master-info">
+
+              <h4>
+                ${s.name}
+                <span class="badge badge-code">
+                  ${s.code}
+                </span>
+              </h4>
+
+              <p>
+                👤 ${s.owner}
+                |
+                📞 ${s.mobile}
+              </p>
+
+              <p>
+                🏠 ${s.address}
+              </p>
+
+            </div>
+
+            ${
+              isAdmin()
+              ? `
+                <div style="text-align:right">
+
+                  <button
+                    type="button"
+                    class="btn btn-secondary btn-small"
+                    onclick="editShop('${s.id}')"
+                  >
+                    ✏️ Edit
+                  </button>
+
+                  <br>
+
+                  <button
+                    type="button"
+                    class="btn-del-row"
+                    style="margin-top:6px"
+                    onclick="deleteShop('${s.id}')"
+                  >
+                    ✕
+                  </button>
+
+                </div>
+              `
+              : ""
+            }
+
+          </div>
+        `;
+
+      });
+
+    });
+
+  container.innerHTML = html;
+}
+
+function populateAreaLOV(){
+
+  const list =
+    document.getElementById("areaList");
+
+  if(!list) return;
+
+  const areas = [
+    ...new Set(
+      getShops()
+        .map(s => s.area)
+        .filter(Boolean)
+    )
+  ].sort();
+
+  list.innerHTML =
+    areas
+      .map(
+        a => `<option value="${a}">`
+      )
+      .join("");
+}
+
+function onAreaSelect(){
+
+  const area =
+    (
+      document.getElementById("areaInput").value || ""
+    )
+    .trim()
+    .toLowerCase();
+
+  const select =
+    document.getElementById("shopSelect");
+
+  resetShopDetails();
+
+  if(!area){
+
+    select.disabled = true;
+
+    select.innerHTML =
+      `<option value="">
+        -- Select Area First --
+      </option>`;
+
+    return;
+  }
+
+  const shops =
+    getShops().filter(
+      s =>
+        s.area &&
+        s.area.toLowerCase().includes(area)
+    );
+
+  if(!shops.length){
+
+    select.disabled = true;
+
+    select.innerHTML =
+      `<option value="">
+        -- No Shops Found --
+      </option>`;
+
+    return;
+  }
+
+  select.disabled = false;
+
+  select.innerHTML =
+    `<option value="">
+      -- Select Registered Shop --
+    </option>`;
+
+  shops.forEach(s => {
+
+    const opt =
+      document.createElement("option");
+
+    opt.value = s.id;
+
+    opt.textContent =
+      `${s.name} (${s.code})`;
+
+    select.appendChild(opt);
+
+  });
+}
+
+function onShopSelect(){
+
+  const id =
+    document.getElementById("shopSelect").value;
+
+  const shop =
+    getShops().find(
+      s => String(s.id) === String(id)
+    );
+
+  if(!shop){
+
+    resetShopDetails();
+
+    return;
+  }
+
+  document.getElementById("dispShopCode").innerText =
+    shop.code || "-";
+
+  document.getElementById("dispArea").innerText =
+    shop.area || "-";
+
+  document.getElementById("dispShopOwner").innerText =
+    shop.owner || "-";
+
+  document.getElementById("dispMobileNo").innerText =
+    shop.mobile || "-";
+
+  document.getElementById("dispAddress").innerText =
+    shop.address || "-";
+}
+
+function resetShopDetails(){
+
+  [
+    "dispShopCode",
+    "dispArea",
+    "dispShopOwner",
+    "dispMobileNo",
+    "dispAddress"
+  ].forEach(id => {
+
+    const el =
+      document.getElementById(id);
+
+    if(el)
+      el.innerText = "-";
+
+  });
+}
+
+
+/* =========================================================
+   PRODUCT MASTER
+========================================================= */
+
+function normalizeProductRates(product){
+
+  if(!product)
+    return [];
+
+  if(Array.isArray(product.rates))
+    return product.rates;
+
+  return [
+    {
+      id:Date.now(),
+      effectiveFrom:product.effectiveFrom || "1900-01-01",
+      effectiveTo:product.effectiveTo || "",
+      purchaseRate:Number(product.purchaseRate) || 0,
+      price:Number(product.price) || 0
+    }
+  ];
+}
+
+function getProductRate(product, orderDate){
+
+  if(!product)
+    return null;
+
+  const date =
+    orderDate ||
+    new Date().toISOString().slice(0,10);
+
+  const rates =
+    normalizeProductRates(product)
+      .filter(
+        r => r && r.effectiveFrom
+      )
+      .slice()
+      .sort(
+        (a,b) =>
+          String(b.effectiveFrom)
+            .localeCompare(
+              String(a.effectiveFrom)
+            )
+      );
+
+  return (
+    rates.find(
+      r =>
+        String(r.effectiveFrom) <= date &&
+        (
+          !r.effectiveTo ||
+          date <= String(r.effectiveTo)
+        )
+    ) ||
+    rates[0] ||
+    null
+  );
+}
+
+function getProductPurchaseRate(product, orderDate){
+
+  const r =
+    getProductRate(product,orderDate);
+
+  return Number(
+    r?.purchaseRate ??
+    product?.purchaseRate ??
+    0
+  ) || 0;
+}
+
+function getProductSellingRate(product, orderDate){
+
+  const r =
+    getProductRate(product,orderDate);
+
+  return Number(
+    r?.price ??
+    product?.price ??
+    0
+  ) || 0;
+}
+
+function saveProductMaster(e){
+
+  e.preventDefault();
+
+  if(!requireAdmin()) return;
+
+  const id =
+    document.getElementById("mProdEditId").value;
+
+  const name =
+    document.getElementById("mProdName").value.trim();
+
+  const type =
+    document.getElementById("mProdType").value.trim();
+
+  const purchaseRate =
+    Number(
+      document.getElementById("mProdPurchase").value
+    ) || 0;
+
+  const price =
+    Number(
+      document.getElementById("mProdPrice").value
+    ) || 0;
+
+  const effectiveFrom =
+    document.getElementById("mProdEffectiveFrom").value;
+
+  const effectiveTo =
+    document.getElementById("mProdEffectiveTo").value;
+
+  if(!name || !type || !effectiveFrom){
+
+    alert("Please enter all product details.");
+
+    return;
+  }
+
+  if(
+    effectiveTo &&
+    effectiveTo < effectiveFrom
+  ){
+
+    alert(
+      "Effective To date cannot be before Effective From date."
+    );
+
+    return;
+  }
+
+  const products = getProducts();
+
+  if(
+    products.some(
+      p =>
+        String(p.id) !== String(id) &&
+        String(p.name || "").toLowerCase() === name.toLowerCase() &&
+        String(p.type || "").toLowerCase() === type.toLowerCase()
+    )
+  ){
+
+    alert(
+      "Product Name + Product Type already exists."
+    );
+
+    return;
+  }
+
+  if(id){
+
+    const product =
+      products.find(
+        p => String(p.id) === String(id)
+      );
+
+    if(!product){
+
+      alert("Product not found.");
+
+      return;
+    }
+
+    const rates =
+      normalizeProductRates(product);
+
+    const editRateId =
+      document.getElementById("mProdEditRateId")?.value || "";
+
+    const overlaps =
+      rates.some(r => {
+
+        if(
+          editRateId &&
+          String(r.id) === String(editRateId)
+        ){
+          return false;
+        }
+
+        const a1 = effectiveFrom;
+        const a2 = effectiveTo || "9999-12-31";
+
+        const b1 = String(r.effectiveFrom);
+        const b2 = r.effectiveTo || "9999-12-31";
+
+        return (
+          a1 <= b2 &&
+          b1 <= a2
+        );
+      });
+
+    if(overlaps){
+
+      alert(
+        "This effective date range overlaps an existing rate period. Please use a non-overlapping period."
+      );
+
+      return;
+    }
+
+    product.name = name;
+    product.type = type;
+
+    if(editRateId){
+
+      const existingRate =
+        rates.find(
+          r => String(r.id) === String(editRateId)
+        );
+
+      if(existingRate){
+
+        existingRate.effectiveFrom = effectiveFrom;
+        existingRate.effectiveTo = effectiveTo;
+        existingRate.purchaseRate = purchaseRate;
+        existingRate.price = price;
+
+      }else{
+
+        rates.push({
+          id:Date.now(),
+          effectiveFrom,
+          effectiveTo,
+          purchaseRate,
+          price
+        });
+
+      }
+
+      product.rates = rates;
+
+    }else{
+
+      product.rates =
+        rates.concat([
+          {
+            id:Date.now(),
+            effectiveFrom,
+            effectiveTo,
+            purchaseRate,
+            price
+          }
+        ]);
+
+    }
+
+    product.purchaseRate = purchaseRate;
+    product.price = price;
+
+    saveProductsData(products);
+    resetProductForm();
+
+    alert(
+      "✅ Product details and rate saved successfully."
+    );
+
+    return;
+  }
+
+  products.push({
+    id:Date.now(),
+    name,
+    type,
+    purchaseRate,
+    price,
+    rates:[
+      {
+        id:Date.now()+1,
+        effectiveFrom,
+        effectiveTo,
+        purchaseRate,
+        price
+      }
+    ]
+  });
+
+  saveProductsData(products);
+  resetProductForm();
+
+  alert("Product added successfully.");
+}
+
+function editProduct(id){
+
+  if(!requireAdmin()) return;
+
+  const product =
+    getProducts().find(
+      p => String(p.id) === String(id)
+    );
+
+  if(!product){
+
+    alert("Product not found.");
+
+    return;
+  }
+
+  const rates =
+    normalizeProductRates(product)
+      .slice()
+      .sort(
+        (a,b) =>
+          String(b.effectiveFrom)
+            .localeCompare(
+              String(a.effectiveFrom)
+            )
+      );
+
+  const latest = rates[0];
+
+  document.getElementById("mProdEditId").value =
+    product.id;
+
+  document.getElementById("mProdEditRateId").value =
+    latest?.id || "";
+
+  document.getElementById("mProdName").value =
+    product.name || "";
+
+  document.getElementById("mProdType").value =
+    product.type || "";
+
+  document.getElementById("mProdPurchase").value =
+    Number(
+      latest?.purchaseRate ??
+      product.purchaseRate ??
+      0
+    );
+
+  document.getElementById("mProdPrice").value =
+    Number(
+      latest?.price ??
+      product.price ??
+      0
+    );
+
+  document.getElementById("mProdEffectiveFrom").value =
+    latest?.effectiveFrom ||
+    new Date().toISOString().slice(0,10);
+
+  document.getElementById("mProdEffectiveTo").value =
+    latest?.effectiveTo || "";
+
+  document.getElementById("saveProductBtn").innerText =
+    "💾 Save Product Changes";
+
+  document
+    .getElementById("cancelProductEditBtn")
+    .classList.remove("hidden");
+
+  document
+    .getElementById("productAddCard")
+    .scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+}
+
+function resetProductForm(){
+
+  document
+    .querySelector("#productAddCard form")
+    ?.reset();
+
+  document.getElementById("mProdEditId").value = "";
+  document.getElementById("mProdEditRateId").value = "";
+
+  document.getElementById("saveProductBtn").innerText =
+    "➕ Save Product";
+
+  document
+    .getElementById("cancelProductEditBtn")
+    .classList.add("hidden");
+
+  document.getElementById("mProdEffectiveFrom").value =
+    new Date().toISOString().slice(0,10);
+}
+
+function cancelProductEdit(){
+  resetProductForm();
+}
+
+function deleteProduct(id){
+
+  if(!requireAdmin()) return;
+
+  if(!confirm("Delete this product?"))
+    return;
+
+  saveProductsData(
+    getProducts().filter(
+      p => String(p.id) !== String(id)
+    )
+  );
+}
+
+function renderProductsList(){
+
+  const container =
+    document.getElementById("productsMasterList");
+
+  if(!container) return;
+
+  const products = getProducts();
+
+  if(!products.length){
+
+    container.innerHTML =
+      `<p style="color:#94a3b8;font-size:12px">
+        No products registered.
+      </p>`;
+
+    return;
+  }
+
+  container.innerHTML =
+    products.map(p => {
+
+      const rates =
+        normalizeProductRates(p)
+          .slice()
+          .sort(
+            (a,b) =>
+              String(b.effectiveFrom)
+                .localeCompare(
+                  String(a.effectiveFrom)
+                )
+          );
+
+      return `
+        <div class="master-item">
+
+          <div class="master-info">
+
+            <h4>
+              ${p.name}
+            </h4>
+
+            <p>
+              Type:
+              <span class="badge badge-type">
+                ${p.type || "General"}
+              </span>
+            </p>
+
+            ${
+              rates.map(r => `
+                <p style="font-size:11px">
+                  📅 ${r.effectiveFrom}
+                  →
+                  ${r.effectiveTo || "OPEN / CURRENT"}
+                  <br>
+                  Purchase:
+                  ₹${Number(r.purchaseRate || 0).toFixed(2)}
+                  |
+                  Selling:
+                  ₹${Number(r.price || 0).toFixed(2)}
+                </p>
+              `).join("")
+            }
+
+          </div>
+
+          <div style="text-align:right">
+
+            ${
+              isAdmin()
+              ? `
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-small"
+                  onclick="editProduct('${p.id}')"
+                >
+                  ✏️ Edit
+                </button>
+
+                <br>
+
+                <button
+                  type="button"
+                  class="btn-del-row"
+                  style="margin-top:6px"
+                  onclick="deleteProduct('${p.id}')"
+                >
+                  ✕
+                </button>
+              `
+              : ""
+            }
+
+          </div>
+
+        </div>
+      `;
+
+    }).join("");
+}
+
+
+/* =========================================================
+   PRODUCT MAPPING
+========================================================= */
+
+function getMappedProduct(p){
+
+  if(!p)
+    return null;
+
+  const products = getProducts();
+
+  return (
+    products.find(
+      prod =>
+        String(prod.id) ===
+        String(p.productId || p.id)
+    ) ||
+    products.find(
+      prod =>
+        String(prod.name || "").toLowerCase() ===
+        String(p.name || "").toLowerCase()
+    ) ||
+    null
+  );
+}
+
+function getMappedProductType(p){
+
+  if(!p)
+    return "General";
+
+  if(p.type)
+    return p.type;
+
+  const prod =
+    getMappedProduct(p);
+
+  return prod?.type || "General";
+}
+
+
+/* =========================================================
+   PRODUCT LOV
+========================================================= */
+
+function productOptions(
+  selectedId = "",
+  orderDate = ""
+){
+
+  const date =
+    orderDate ||
+    document.getElementById("orderDate")?.value ||
+    "";
+
+  return `
+    <option value="">
+      Select Product
+    </option>
+
+    ${
+      getProducts()
+        .map(p => {
+
+          const price =
+            getProductSellingRate(
+              p,
+              date
+            );
+
+          return `
+            <option
+              value="${p.id}"
+              data-type="${p.type || "General"}"
+              data-price="${price}"
+              ${
+                String(p.id) === String(selectedId)
+                ? "selected"
+                : ""
+              }
+            >
+              ${p.name}
+              + ${p.type || "General"}
+              (₹${price.toFixed(2)})
+            </option>
+          `;
+
+        })
+        .join("")
+    }
+  `;
+}
+
+function refreshProductSelects(){
+
+  document
+    .querySelectorAll(".p-select")
+    .forEach(select => {
+
+      const old = select.value;
+
+      select.innerHTML =
+        productOptions(
+          old,
+          document.getElementById("orderDate")?.value || ""
+        );
+
+      select.value = old;
+
+    });
+}
+
+
+/* =========================================================
+   OFFER LOGIC
+========================================================= */
+
+function refreshOfferForRow(rowId){
+
+  const row =
+    document.getElementById(rowId);
+
+  if(!row) return;
+
+  const productId =
+    row.querySelector(".p-product-id")?.value ||
+    row.querySelector(".p-select")?.value ||
+    "";
+
+  const orderDate =
+    document.getElementById("orderDate")?.value || "";
+
+  const qty =
+    Number(
+      row.querySelector(".p-qty")?.value
+    ) || 0;
+
+  const offerCheckbox =
+    row.querySelector(".offer-checkbox");
+
+  const offerInfo =
+    row.querySelector(".offer-info");
+
+  const offerIdInput =
+    row.querySelector(".offer-id");
+
+  const offerGiftQtyInput =
+    row.querySelector(".offer-gift-qty");
+
+  const offerGiftDescInput =
+    row.querySelector(".offer-gift-description");
+
+  const activeOffers =
+    getActiveOffersForProduct(
+      productId,
+      orderDate
+    );
+
+  if(!activeOffers.length){
+
+    if(offerInfo){
+
+      offerInfo.innerText =
+        "No active offers available for this product on selected date.";
+
+    }
+
+    if(offerCheckbox){
+
+      offerCheckbox.checked = false;
+      offerCheckbox.disabled = true;
+
+    }
+
+    if(offerIdInput)
+      offerIdInput.value = "";
+
+    if(offerGiftQtyInput)
+      offerGiftQtyInput.value = "0";
+
+    if(offerGiftDescInput)
+      offerGiftDescInput.value = "";
+
+    return;
+  }
+
+  if(offerCheckbox)
+    offerCheckbox.disabled = false;
+
+  const matchedOffer =
+    activeOffers.find(
+      o => qty >= Number(o.buyQty)
+    );
+
+  const lowestTier =
+    activeOffers[activeOffers.length - 1];
+
+  if(
+    matchedOffer &&
+    offerCheckbox?.checked
+  ){
+
+    if(offerIdInput)
+      offerIdInput.value = matchedOffer.id;
+
+    if(offerGiftQtyInput)
+      offerGiftQtyInput.value = matchedOffer.giftQty;
+
+    if(offerGiftDescInput)
+      offerGiftDescInput.value =
+        matchedOffer.giftDescription;
+
+    if(offerInfo){
+
+      offerInfo.innerHTML = `
+        <span style="color:var(--accent)">
+          🎁 Tier Unlocked:
+          Buy ${matchedOffer.buyQty}+
+          → Get ${matchedOffer.giftQty}
+          ${matchedOffer.giftDescription}.
+          You get
+          <strong>
+            ${matchedOffer.giftQty}
+            ${matchedOffer.giftDescription}
+          </strong>!
+        </span>
+      `;
+
+    }
+
+  }else if(offerCheckbox?.checked){
+
+    if(offerIdInput)
+      offerIdInput.value =
+        lowestTier.id;
+
+    if(offerGiftQtyInput)
+      offerGiftQtyInput.value = 0;
+
+    if(offerGiftDescInput)
+      offerGiftDescInput.value =
+        lowestTier.giftDescription;
+
+    if(offerInfo){
+
+      offerInfo.innerHTML = `
+        <span style="color:var(--warning)">
+          ⚠️ Minimum quantity of
+          ${lowestTier.buyQty}
+          required.
+
+          Current quantity:
+          ${qty}.
+
+          Available Tiers:
+          ${
+            activeOffers
+              .map(
+                o =>
+                  `Buy ${o.buyQty} → ${o.giftQty} ${o.giftDescription}`
+              )
+              .join(" | ")
+          }
+        </span>
+      `;
+
+    }
+
+  }else{
+
+    if(offerIdInput)
+      offerIdInput.value =
+        matchedOffer
+          ? matchedOffer.id
+          : lowestTier.id;
+
+    if(offerGiftQtyInput)
+      offerGiftQtyInput.value =
+        matchedOffer
+          ? matchedOffer.giftQty
+          : 0;
+
+    if(offerGiftDescInput)
+      offerGiftDescInput.value =
+        matchedOffer
+          ? matchedOffer.giftDescription
+          : lowestTier.giftDescription;
+
+    if(offerInfo){
+
+      offerInfo.innerHTML = `
+        Available Tiers:
+        ${
+          activeOffers
+            .map(
+              o =>
+                `Buy ${o.buyQty} → ${o.giftQty} ${o.giftDescription}`
+            )
+            .join(" | ")
+        }
+      `;
+
+    }
+  }
+}
+
+function onOfferToggle(rowId){
+
+  refreshOfferForRow(rowId);
+
+  calculateTotals();
+}
+
+function refreshAllOffers(){
+
+  document
+    .querySelectorAll(".product-row")
+    .forEach(row => {
+
+      refreshOfferForRow(row.id);
+
+    });
+}
+
+
+/* =========================================================
+   ORDER ENTRY
+========================================================= */
+
+function addProductRow(prefill = null){
+
+  const container =
+    document.getElementById(
+      "productRowsContainer"
+    );
+
+  const rowId =
+    Date.now() +
+    Math.floor(Math.random() * 1000);
+
+  const div =
+    document.createElement("div");
+
+  div.className = "product-row";
+  div.id = `row-${rowId}`;
+
+  const selectedProductId =
+    prefill?.productId || "";
+
+  const selectedProduct =
+    getProducts().find(
+      p =>
+        String(p.id) ===
+        String(selectedProductId)
+    );
+
+  const prefillType =
+    prefill?.type ||
+    selectedProduct?.type ||
+    "";
+
+  const prefillPrice =
+    prefill?.price ??
+    (
+      selectedProduct
+      ? getProductSellingRate(
+          selectedProduct,
+          document.getElementById("orderDate")?.value || ""
+        )
+      : 0
+    );
+
+  div.innerHTML = `
+
+    <div>
+
+      <select
+        class="p-select"
+        onchange="
+          onProductSelect('row-${rowId}');
+          refreshOfferForRow('row-${rowId}');
+        "
+        required
+      >
+
+        ${productOptions(
+          selectedProductId,
+          document.getElementById("orderDate")?.value || ""
+        )}
+
+      </select>
+
+      <input
+        class="p-name"
+        placeholder="Product Name"
+        value="${prefill?.name || selectedProduct?.name || ""}"
+        required
+      >
+
+      <span class="badge badge-type p-type-badge">
+        ${prefillType || "Type: -"}
+      </span>
+
+      <input
+        type="hidden"
+        class="p-type-input"
+        value="${prefillType}"
+      >
+
+      <input
+        type="hidden"
+        class="p-product-id"
+        value="${selectedProductId}"
+      >
+
+    </div>
+
+
+    <input
+      type="number"
+      class="p-qty"
+      placeholder="Qty"
+      min="1"
+      step="1"
+      value="${prefill?.qty || 1}"
+      oninput="
+        calculateTotals();
+        refreshOfferForRow('row-${rowId}');
+      "
+      required
+    >
+
+
+    <input
+      type="number"
+      class="p-price"
+      placeholder="Price"
+      step="0.01"
+      min="0"
+      value="${Number(prefillPrice || 0).toFixed(2)}"
+      oninput="calculateTotals()"
+      required
+    >
+
+
+    <input
+      type="number"
+      class="p-total"
+      placeholder="Total"
+      value="${Number(prefill?.total || 0).toFixed(2)}"
+      readonly
+    >
+
+
+    <div
+      class="offer-box"
+      style="
+        margin-top:8px;
+        padding:8px;
+        border:1px dashed var(--accent);
+        border-radius:8px;
+        background:#fff7ed;
+      "
+    >
+
+      <label
+        style="
+          display:flex;
+          align-items:center;
+          gap:7px;
+          font-size:12px;
+          font-weight:bold;
+        "
+      >
+
+        <input
+          type="checkbox"
+          class="offer-checkbox"
+          onchange="
+            onOfferToggle('row-${rowId}')
+          "
+          ${
+            prefill?.offerApplied
+              ? "checked"
+              : ""
+          }
+        >
+
+        🎁 Apply Tiered Product Offer
+
+      </label>
+
+
+      <div
+        class="offer-info"
+        style="
+          font-size:11px;
+          color:var(--muted);
+          margin-top:5px;
+        "
+      >
+        No applicable offer selected.
+      </div>
+
+
+      <input
+        type="hidden"
+        class="offer-id"
+        value="${prefill?.offerId || ""}"
+      >
+
+      <input
+        type="hidden"
+        class="offer-gift-qty"
+        value="${prefill?.offerGiftQty || 0}"
+      >
+
+      <input
+        type="hidden"
+        class="offer-gift-description"
+        value="${prefill?.offerGiftDescription || ""}"
+      >
+
+    </div>
+
+
+    <button
+      type="button"
+      class="btn-del-row"
+      onclick="
+        removeProductRow('row-${rowId}')
+      "
+    >
+      ✕
+    </button>
+
+  `;
+
+  container.appendChild(div);
+
+  refreshOfferForRow(`row-${rowId}`);
+
+  calculateTotals();
+}
+
+function onProductSelect(rowId){
+
+  const row =
+    document.getElementById(rowId);
+
+  if(!row) return;
+
+  const select =
+    row.querySelector(".p-select");
+
+  const product =
+    getProducts().find(
+      p =>
+        String(p.id) ===
+        String(select.value)
+    );
+
+  if(!product){
+
+    row.querySelector(".p-product-id").value = "";
+    row.querySelector(".p-name").value = "";
+    row.querySelector(".p-type-input").value = "";
+    row.querySelector(".p-type-badge").innerText =
+      "Type: -";
+
+    refreshOfferForRow(rowId);
+
+    calculateTotals();
+
+    return;
+  }
+
+  const orderDate =
+    document.getElementById("orderDate")?.value || "";
+
+  row.querySelector(".p-name").value =
+    product.name;
+
+  row.querySelector(".p-type-input").value =
+    product.type || "General";
+
+  row.querySelector(".p-type-badge").innerText =
+    product.type || "General";
+
+  row.querySelector(".p-price").value =
+    getProductSellingRate(
+      product,
+      orderDate
+    ).toFixed(2);
+
+  row.querySelector(".p-product-id").value =
+    product.id;
+
+  refreshOfferForRow(rowId);
+
+  calculateTotals();
+}
+
+function refreshProductRatesForDate(){
+
+  const date =
+    document.getElementById("orderDate")?.value || "";
+
+  document
+    .querySelectorAll(".product-row")
+    .forEach(row => {
+
+      const productId =
+        row.querySelector(
+          ".p-product-id"
+        )?.value;
+
+      const product =
+        getProducts().find(
+          p =>
+            String(p.id) ===
+            String(productId)
+        );
+
+      if(!product) return;
+
+      row.querySelector(".p-price").value =
+        getProductSellingRate(
+          product,
+          date
+        ).toFixed(2);
+
+      row.querySelector(".p-type-input").value =
+        product.type || "General";
+
+      row.querySelector(".p-type-badge").innerText =
+        product.type || "General";
+
+      refreshOfferForRow(row.id);
+
+    });
+
+  calculateTotals();
+
+  refreshAllOffers();
+}
+
+function removeProductRow(id){
+
+  const container =
+    document.getElementById(
+      "productRowsContainer"
+    );
+
+  if(container.children.length <= 1){
+
+    alert(
+      "At least one product is required."
+    );
+
+    return;
+  }
+
+  document
+    .getElementById(id)
+    ?.remove();
+
+  calculateTotals();
+}
+
+function calculateTotals(){
+
+  let total = 0;
+
+  document
+    .querySelectorAll(".product-row")
+    .forEach(row => {
+
+      const qty =
+        Number(
+          row.querySelector(".p-qty")?.value
+        ) || 0;
+
+      const price =
+        Number(
+          row.querySelector(".p-price")?.value
+        ) || 0;
+
+      const lineTotal =
+        qty * price;
+
+      const totalInput =
+        row.querySelector(".p-total");
+
+      if(totalInput){
+
+        totalInput.value =
+          lineTotal.toFixed(2);
+
+      }
+
+      total += lineTotal;
+
+    });
+
+  const grandEl =
+    document.getElementById(
+      "grandInvoicePrice"
+    );
+
+  if(grandEl){
+
+    grandEl.innerText =
+      total.toFixed(2);
+
+  }
+
+  return total;
+}
+
+function saveOrder(e){
+
+  e.preventDefault();
+
+  const shopSelectId =
+    document.getElementById("shopSelect")?.value;
+
+  const shop =
+    getShops().find(
+      s =>
+        String(s.id) ===
+        String(shopSelectId)
+    );
+
+  if(!shop){
+
+    alert(
+      "Please select a registered shop."
+    );
+
+    return;
+  }
+
+  const orderDate =
+    document.getElementById("orderDate")?.value;
+
+  if(!orderDate){
+
+    alert(
+      "Please select the order date."
+    );
+
+    return;
+  }
+
+  const rows =
+    document.querySelectorAll(
+      ".product-row"
+    );
+
+  if(!rows.length){
+
+    alert(
+      "Please add at least one product row."
+    );
+
+    return;
+  }
+
+  const products = [];
+  let invoicePrice = 0;
+
+  for(const row of rows){
+
+    const productId =
+      row.querySelector(".p-product-id")?.value ||
+      row.querySelector(".p-select")?.value ||
+      "";
+
+    const name =
+      row.querySelector(".p-name")?.value.trim() ||
+      "";
+
+    const type =
+      row.querySelector(".p-type-input")?.value ||
+      "General";
+
+    const qty =
+      Number(
+        row.querySelector(".p-qty")?.value
+      ) || 0;
+
+    const price =
+      Number(
+        row.querySelector(".p-price")?.value
+      ) || 0;
+
+    if(!productId){
+
+      alert(
+        "Please select a product for every row."
+      );
+
+      row.querySelector(".p-select")?.focus();
+
+      return;
+    }
+
+    if(qty <= 0){
+
+      alert(
+        "Product quantity must be at least 1."
+      );
+
+      row.querySelector(".p-qty")?.focus();
+
+      return;
+    }
+
+    if(price < 0){
+
+      alert(
+        "Product price cannot be negative."
+      );
+
+      return;
+    }
+
+    const lineTotal =
+      qty * price;
+
+    invoicePrice += lineTotal;
+
+    const offerCheckbox =
+      row.querySelector(
+        ".offer-checkbox"
+      );
+
+    const activeOffers =
+      getActiveOffersForProduct(
+        productId,
+        orderDate
+      );
+
+    const matchedOffer =
+      offerCheckbox?.checked
+        ? activeOffers.find(
+            o =>
+              qty >= Number(o.buyQty)
+          )
+        : null;
+
+    const offerApplied =
+      !!matchedOffer;
+
+    const offerId =
+      matchedOffer
+        ? matchedOffer.id
+        : "";
+
+    const offerGiftQty =
+      matchedOffer
+        ? Number(matchedOffer.giftQty)
+        : 0;
+
+    const offerGiftDescription =
+      matchedOffer
+        ? matchedOffer.giftDescription
+        : "";
+
+    products.push({
+
+      productId,
+      name,
+      type,
+      qty,
+      price,
+      total:lineTotal,
+
+      offerApplied:
+        offerApplied &&
+        offerGiftQty > 0,
+
+      offerId,
+      offerGiftQty,
+      offerGiftDescription
+
+    });
+  }
+
+  const editId =
+    document.getElementById(
+      "editOrderId"
+    )?.value;
+
+  let orders = getOrders();
+
+  const order = {
+
+    id:
+      editId
+        ? Number(editId)
+        : Date.now(),
+
+    date:orderDate,
+
+    shopCode:shop.code,
+    shopArea:shop.area,
+    shopName:shop.name,
+    shopOwner:shop.owner,
+    mobileNo:shop.mobile,
+    shopAddress:shop.address,
+
+    products,
+
+    invoicePrice
+
+  };
+
+  if(editId){
+
+    orders =
+      orders.filter(
+        o =>
+          String(o.id) !==
+          String(editId)
+      );
+
+  }
+
+  orders.unshift(order);
+
+  saveOrdersData(orders);
+
+  document
+    .getElementById("orderForm")
+    .reset();
+
+  document.getElementById("editOrderId").value = "";
+
+  document.getElementById(
+    "productRowsContainer"
+  ).innerHTML = "";
+
+  addProductRow();
+
+  resetShopDetails();
+
+  document.getElementById(
+    "saveOrderBtn"
+  ).innerText =
+    "💾 Save Daily Order";
+
+  setDefaultDates();
+
+  alert(
+    editId
+      ? "✅ Order updated successfully."
+      : "✅ Order saved successfully."
+  );
+
+  switchTab("history");
+}
+
+
+/* =========================================================
+   HISTORY
+========================================================= */
+
+function renderHistory(){
+
+  const container =
+    document.getElementById(
+      "historyList"
+    );
+
+  if(!container) return;
+
+  const search =
+    (
+      document.getElementById(
+        "filterSearch"
+      )?.value || ""
+    ).toLowerCase();
+
+  const orders =
+    getOrders().filter(o => {
+
+      const text =
+        `${o.shopName || ""}
+         ${o.shopArea || ""}
+         ${o.shopCode || ""}`
+        .toLowerCase();
+
+      return text.includes(search);
+
+    });
+
+  if(!orders.length){
+
+    container.innerHTML =
+      `<p style="
+        text-align:center;
+        color:#94a3b8;
+        padding:20px
+      ">
+        No orders found.
+      </p>`;
+
+    return;
+  }
+
+  container.innerHTML =
+    orders.map(order => {
+
+      const products =
+        Array.isArray(order.products)
+          ? order.products
+          : [];
+
+      const shopTotal =
+        products.reduce(
+          (sum,p) =>
+            sum +
+            Number(p.total || 0),
+          0
+        );
+
+      return `
+
+        <div class="card">
+
+          <div class="shop-header">
+
+            <strong style="font-size:16px">
+              ${order.shopName}
+            </strong>
+
+            <span class="badge badge-area">
+              ${order.shopArea}
+            </span>
+
+            <div style="
+              font-size:12px;
+              color:var(--muted);
+              margin-top:5px
+            ">
+
+              👤 ${order.shopOwner}
+              |
+              📞 ${order.mobileNo}
+              |
+              Code: ${order.shopCode}
+              |
+              📅 ${order.date}
+
+            </div>
+
+            <div style="
+              font-size:12px;
+              color:var(--muted);
+              margin-top:3px
+            ">
+
+              📍 ${order.shopAddress}
+
+            </div>
+
+          </div>
+
+
+          <div class="summary-table-wrapper">
+
+            <table class="summary-table">
+
+              <thead>
+
+                <tr>
+
+                  <th>Product</th>
+
+                  <th>Product Type</th>
+
+                  <th style="text-align:center">
+                    Ordered Qty
+                  </th>
+
+                  <th style="text-align:right">
+                    Unit Price
+                  </th>
+
+                  <th style="text-align:right">
+                    Total
+                  </th>
+
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                ${
+                  products.map(p => `
+
+                    <tr>
+
+                      <td>
+                        <strong>
+                          ${p.name}
+                        </strong>
+                      </td>
+
+                      <td>
+
+                        <span class="badge badge-type">
+                          ${getMappedProductType(p)}
+                        </span>
+
+                        ${
+                          p.offerApplied &&
+                          Number(p.offerGiftQty) > 0
+                          ? `
+                            <div style="
+                              font-size:11px;
+                              color:var(--accent);
+                              margin-top:3px
+                            ">
+                              🎁
+                              ${p.offerGiftQty}
+                              ${p.offerGiftDescription || "Gift"}
+                            </div>
+                          `
+                          : ""
+                        }
+
+                      </td>
+
+                      <td style="text-align:center">
+                        ${p.qty}
+                      </td>
+
+                      <td style="text-align:right">
+                        ₹${Number(
+                          p.price || 0
+                        ).toFixed(2)}
+                      </td>
+
+                      <td style="text-align:right">
+                        ₹${Number(
+                          p.total || 0
+                        ).toFixed(2)}
+                      </td>
+
+                    </tr>
+
+                  `).join("")
+                }
+
+                <tr class="total-row">
+
+                  <td
+                    colspan="4"
+                    style="text-align:right"
+                  >
+                    ALL PRODUCT TOTAL
+                  </td>
+
+                  <td style="text-align:right">
+                    ₹${shopTotal.toFixed(2)}
+                  </td>
+
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+
+          <div style="
+            display:flex;
+            gap:8px;
+            margin-top:10px;
+          ">
+
+            ${
+              isAdmin()
+              ? `
+
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-small"
+                  onclick="editOrder('${order.id}')"
+                >
+                  ✏️ Edit
+                </button>
+
+                <button
+                  type="button"
+                  class="btn btn-danger btn-small"
+                  onclick="deleteOrder('${order.id}')"
+                >
+                  🗑️ Delete
+                </button>
+
+              `
+              : `
+
+                <span style="
+                  font-size:11px;
+                  color:var(--muted);
+                ">
+                  👁️ Read-only view
+                </span>
+
+              `
+            }
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+}
+
+
+/* =========================================================
+   EDIT / DELETE ORDER
+========================================================= */
+
+function editOrder(id){
+
+  if(!requireAdmin()) return;
+
+  const order =
+    getOrders().find(
+      o =>
+        String(o.id) ===
+        String(id)
+    );
+
+  if(!order) return;
+
+  switchTab("add");
+
+  document.getElementById(
+    "editOrderId"
+  ).value = order.id;
+
+  document.getElementById(
+    "orderDate"
+  ).value = order.date;
+
+  document.getElementById(
+    "areaInput"
+  ).value = order.shopArea;
+
+  onAreaSelect();
+
+  const shop =
+    getShops().find(
+      s =>
+        s.code ===
+        order.shopCode
+    );
+
+  if(shop){
+
+    document.getElementById(
+      "shopSelect"
+    ).value = shop.id;
+
+    onShopSelect();
+
+  }
+
+  const container =
+    document.getElementById(
+      "productRowsContainer"
+    );
+
+  container.innerHTML = "";
+
+  (order.products || [])
+    .forEach(p => addProductRow(p));
+
+  document.getElementById(
+    "saveOrderBtn"
+  ).innerText =
+    "💾 Update Order Changes";
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+function deleteOrder(id){
+
+  if(!requireAdmin()) return;
+
+  if(!confirm("Delete this order permanently?"))
+    return;
+
+  saveOrdersData(
+    getOrders().filter(
+      o =>
+        String(o.id) !==
+        String(id)
+    )
+  );
+}
+
+
+/* =========================================================
+   FACTORY SUMMARY
+========================================================= */
+
+function renderFactorySummary(){
+
+  const date =
+    document.getElementById(
+      "factoryDate"
+    )?.value;
+
+  const container =
+    document.getElementById(
+      "factorySummaryContent"
+    );
+
+  if(!container) return;
+
+  if(!date){
+
+    container.innerHTML =
+      `<div class="card">
+        <p style="text-align:center;color:#94a3b8">
+          Please select a date.
+        </p>
+      </div>`;
+
+    return;
+  }
+
+  const orders =
+    getOrders().filter(
+      o => o.date === date
+    );
+
+  if(!orders.length){
+
+    container.innerHTML =
+      `<div class="card">
+        <p style="text-align:center;color:#94a3b8">
+          No orders for ${date}.
+        </p>
+      </div>`;
+
+    return;
+  }
+
+  const factoryMap = {};
+
+  orders.forEach(order => {
+
+    (order.products || [])
+      .forEach(p => {
+
+        const type =
+          getMappedProductType(p);
+
+        const key =
+          `${p.name}|||${type}`;
+
+        if(!factoryMap[key]){
+
+          factoryMap[key] = {
+
+            name:p.name,
+
+            type,
+
+            qty:0,
+
+            price:Number(p.price) || 0,
+
+            total:0
+
+          };
+
+        }
+
+        factoryMap[key].qty +=
+          Number(p.qty) || 0;
+
+        factoryMap[key].total +=
+          Number(p.total) || 0;
+
+      });
+
+  });
+
+  const factoryTotal =
+    Object.values(factoryMap)
+      .reduce(
+        (sum,p) =>
+          sum +
+          Number(p.total || 0),
+        0
+      );
+
+  const areas = {};
+
+  orders.forEach(order => {
+
+    const area =
+      order.shopArea ||
+      "Unassigned Area";
+
+    if(!areas[area])
+      areas[area] = [];
+
+    areas[area].push(order);
+
+  });
+
+  let html = `
+
+    <div class="card">
+
+      <div style="text-align:center">
+
+        <h2 style="color:var(--primary-dark)">
+          DEV SALES AGENCIES
+        </h2>
+
+        <h3 style="
+          font-size:13px;
+          color:var(--muted)
+        ">
+          FACTORY DISPATCH SUMMARY
+        </h3>
+
+        <p style="
+          font-size:12px;
+          font-weight:bold;
+          margin-top:5px
+        ">
+          Dispatch Date: ${date}
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="section-title">
+        📦 Total Factory Required Dispatch
+      </div>
+
+      <div class="summary-table-wrapper">
+
+        <table class="summary-table">
+
+          <thead>
+
+            <tr>
+
+              <th>Product</th>
+
+              <th>Product Type</th>
+
+              <th style="text-align:center">
+                Ordered Qty
+              </th>
+
+              <th style="text-align:right">
+                Unit Price
+              </th>
+
+              <th style="text-align:right">
+                Total
+              </th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            ${
+              Object.values(factoryMap)
+                .map(p => `
+
+                  <tr>
+
+                    <td>
+                      <strong>
+                        ${p.name}
+                      </strong>
+                    </td>
+
+                    <td>
+                      <span class="badge badge-type">
+                        ${p.type}
+                      </span>
+                    </td>
+
+                    <td style="text-align:center">
+                      ${p.qty}
+                    </td>
+
+                    <td style="text-align:right">
+                      ₹${Number(
+                        p.price || 0
+                      ).toFixed(2)}
+                    </td>
+
+                    <td style="text-align:right">
+                      ₹${Number(
+                        p.total || 0
+                      ).toFixed(2)}
+                    </td>
+
+                  </tr>
+
+                `).join("")
+            }
+
+            <tr class="total-row">
+
+              <td
+                colspan="4"
+                style="text-align:right"
+              >
+                TOTAL FACTORY PRODUCT VALUE
+              </td>
+
+              <td style="text-align:right">
+                ₹${factoryTotal.toFixed(2)}
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  /* SHOP-WISE */
+
+  Object.keys(areas)
+    .sort()
+    .forEach(area => {
+
+      html += `
+
+        <div class="card">
+
+          <div class="section-title">
+            📍 Area: ${area}
+          </div>
+
+      `;
+
+      areas[area].forEach(order => {
+
+        const products =
+          order.products || [];
+
+        const shopTotal =
+          products.reduce(
+            (sum,p) =>
+              sum +
+              Number(p.total || 0),
+            0
+          );
+
+        html += `
+
+          <div
+            class="shop-header"
+            style="margin-top:10px"
+          >
+
+            <strong style="font-size:15px">
+              🏪 ${order.shopName}
+            </strong>
+
+            <div style="
+              font-size:11px;
+              color:var(--muted);
+              margin-top:4px
+            ">
+
+              👤 ${order.shopOwner}
+              |
+              📞 ${order.mobileNo}
+              |
+              Code: ${order.shopCode}
+
+            </div>
+
+            <div style="
+              font-size:11px;
+              color:var(--muted)
+            ">
+
+              📍 ${order.shopAddress}
+
+            </div>
+
+          </div>
+
+
+          <div class="summary-table-wrapper">
+
+            <table class="summary-table">
+
+              <thead>
+
+                <tr>
+
+                  <th>Product</th>
+
+                  <th>Product Type</th>
+
+                  <th style="text-align:center">
+                    Ordered Qty
+                  </th>
+
+                  <th style="text-align:right">
+                    Unit Price
+                  </th>
+
+                  <th style="text-align:right">
+                    Total
+                  </th>
+
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                ${
+                  products.map(p => `
+
+                    <tr>
+
+                      <td>
+                        <strong>
+                          ${p.name}
+                        </strong>
+                      </td>
+
+                      <td>
+
+                        <span class="badge badge-type">
+                          ${getMappedProductType(p)}
+                        </span>
+
+                        ${
+                          p.offerApplied &&
+                          Number(p.offerGiftQty) > 0
+                          ? `
+                            <div style="
+                              font-size:11px;
+                              color:var(--accent);
+                              margin-top:3px
+                            ">
+                              🎁
+                              ${p.offerGiftQty}
+                              ${p.offerGiftDescription || "Gift"}
+                            </div>
+                          `
+                          : ""
+                        }
+
+                      </td>
+
+                      <td style="text-align:center">
+                        ${p.qty}
+                      </td>
+
+                      <td style="text-align:right">
+                        ₹${Number(
+                          p.price || 0
+                        ).toFixed(2)}
+                      </td>
+
+                      <td style="text-align:right">
+                        ₹${Number(
+                          p.total || 0
+                        ).toFixed(2)}
+                      </td>
+
+                    </tr>
+
+                  `).join("")
+                }
+
+                <tr class="total-row">
+
+                  <td
+                    colspan="4"
+                    style="text-align:right"
+                  >
+                    ALL PRODUCT TOTAL
+                  </td>
+
+                  <td style="text-align:right">
+                    ₹${shopTotal.toFixed(2)}
+                  </td>
+
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        `;
+
+      });
+
+      html += `</div>`;
+
+    });
+
+
+  /* =========================================================
+     FACTORY GIFT / OFFER REQUIREMENT
+  ========================================================= */
+
+  const giftMap = {};
+
+  orders.forEach(order => {
+
+    (order.products || [])
+      .forEach(p => {
+
+        if(
+          p.offerApplied &&
+          Number(p.offerGiftQty) > 0
+        ){
+
+          const gift =
+            p.offerGiftDescription ||
+            "Gift";
+
+          const key =
+            `${p.name}|||${gift}`;
+
+          if(!giftMap[key]){
+
+            giftMap[key] = {
+
+              product:p.name,
+
+              gift,
+
+              qty:0
+
+            };
+
+          }
+
+          giftMap[key].qty +=
+            Number(p.offerGiftQty) || 0;
+
+        }
+
+      });
+
+  });
+
+  if(Object.keys(giftMap).length){
+
+    html += `
+
+      <div class="card">
+
+        <div class="section-title">
+          🎁 FACTORY GIFT / OFFER REQUIREMENT
+        </div>
+
+        <div style="
+          background:var(--accent-light);
+          border:1px solid #86efac;
+          padding:10px;
+          border-radius:8px;
+          margin-bottom:10px;
+          font-size:12px;
+        ">
+          These gift quantities should be dispatched by the factory along with the corresponding products.
+        </div>
+
+        <div class="summary-table-wrapper">
+
+          <table class="summary-table">
+
+            <thead>
+
+              <tr>
+
+                <th>Product</th>
+
+                <th>Gift</th>
+
+                <th style="text-align:center">
+                  Required Qty
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              ${
+                Object.values(giftMap)
+                  .map(g => `
+
+                    <tr>
+
+                      <td>
+                        <strong>
+                          ${g.product}
+                        </strong>
+                      </td>
+
+                      <td>
+                        🎁 ${g.gift}
+                      </td>
+
+                      <td style="text-align:center">
+
+                        <strong>
+                          ${g.qty}
+                        </strong>
+
+                      </td>
+
+                    </tr>
+
+                  `)
+                  .join("")
+              }
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+  container.innerHTML = html;
+}
+
+
+/* =========================================================
+   ANALYTICS
+========================================================= */
+
+function renderPerformance(){
+
+  const orders =
+    getOrders();
+
+  const date =
+    document.getElementById(
+      "perfDate"
+    )?.value || "";
+
+  const month =
+    document.getElementById(
+      "perfMonth"
+    )?.value || "";
+
+  const products =
+    getProducts();
+
+  const costMap = {};
+
+  products.forEach(p => {
+
+    const key =
+      `${p.name}|||${p.type || "General"}`;
+
+    costMap[key] =
+      getProductPurchaseRate(
+        p,
+        date
+      );
+
+  });
+
+
+  /* DAY */
+
+  const dayOrders =
+    orders.filter(
+      o => o.date === date
+    );
+
+  let daySales = 0;
+  let dayCost = 0;
+
+  dayOrders.forEach(o => {
+
+    daySales +=
+      Number(o.invoicePrice) || 0;
+
+    (o.products || [])
+      .forEach(p => {
+
+        const key =
+          `${p.name}|||${getMappedProductType(p)}`;
+
+        dayCost +=
+          Number(p.qty || 0) *
+          Number(costMap[key] || 0);
+
+      });
+
+  });
+
+  const daySummary =
+    document.getElementById(
+      "perfDaySummary"
+    );
+
+  if(daySummary){
+
+    daySummary.innerHTML = `
+
+      <div style="
+        display:grid;
+        grid-template-columns:1fr 1fr 1fr;
+        gap:7px;
+        text-align:center
+      ">
+
+        <div style="
+          background:#e0e7ff;
+          padding:10px;
+          border-radius:8px
+        ">
+          <small>SALES</small>
+          <strong>
+            ₹${daySales.toFixed(2)}
+          </strong>
+        </div>
+
+        <div style="
+          background:#fee2e2;
+          padding:10px;
+          border-radius:8px
+        ">
+          <small>COST</small>
+          <strong>
+            ₹${dayCost.toFixed(2)}
+          </strong>
+        </div>
+
+        <div style="
+          background:#d1fae5;
+          padding:10px;
+          border-radius:8px
+        ">
+          <small>PROFIT</small>
+          <strong>
+            ₹${(daySales-dayCost).toFixed(2)}
+          </strong>
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+
+  /* MONTH */
+
+  const monthOrders =
+    month
+      ? orders.filter(
+          o =>
+            o.date &&
+            o.date.startsWith(month)
+        )
+      : [];
+
+  let monthSales = 0;
+  let monthCost = 0;
+
+  monthOrders.forEach(o => {
+
+    monthSales +=
+      Number(o.invoicePrice) || 0;
+
+    (o.products || [])
+      .forEach(p => {
+
+        const key =
+          `${p.name}|||${getMappedProductType(p)}`;
+
+        monthCost +=
+          Number(p.qty || 0) *
+          Number(costMap[key] || 0);
+
+      });
+
+  });
+
+  const monthSummary =
+    document.getElementById(
+      "perfMonthSummary"
+    );
+
+  if(monthSummary){
+
+    monthSummary.innerHTML = `
+
+      <div class="invoice-total-box">
+
+        <strong>
+          MONTH SALES
+        </strong>
+
+        <strong>
+          ₹${monthSales.toFixed(2)}
+        </strong>
+
+      </div>
+
+      <div style="
+        margin-top:8px;
+        text-align:right;
+        color:var(--accent);
+        font-weight:bold
+      ">
+
+        Estimated Profit:
+        ₹${(monthSales-monthCost).toFixed(2)}
+
+      </div>
+
+    `;
+
+  }
+
+
+  /* PRODUCT */
+
+  const prodMap = {};
+
+  monthOrders.forEach(o => {
+
+    (o.products || [])
+      .forEach(p => {
+
+        const type =
+          getMappedProductType(p);
+
+        const key =
+          `${p.name}|||${type}`;
+
+        if(!prodMap[key]){
+
+          prodMap[key] = {
+
+            name:p.name,
+            type,
+            qty:0,
+            sales:0
+
+          };
+
+        }
+
+        prodMap[key].qty +=
+          Number(p.qty) || 0;
+
+        prodMap[key].sales +=
+          Number(p.total) || 0;
+
+      });
+
+  });
+
+  const productSummary =
+    document.getElementById(
+      "perfProductSummary"
+    );
+
+  if(productSummary){
+
+    productSummary.innerHTML = `
+
+      <div class="summary-table-wrapper">
+
+        <table class="summary-table">
+
+          <thead>
+
+            <tr>
+
+              <th>Product</th>
+              <th>Product Type</th>
+              <th>Qty</th>
+              <th>Sales</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            ${
+              Object.values(prodMap)
+                .map(p => `
+
+                  <tr>
+
+                    <td>
+                      ${p.name}
+                    </td>
+
+                    <td>
+                      <span class="badge badge-type">
+                        ${p.type}
+                      </span>
+                    </td>
+
+                    <td style="text-align:center">
+                      ${p.qty}
+                    </td>
+
+                    <td style="text-align:right">
+                      ₹${p.sales.toFixed(2)}
+                    </td>
+
+                  </tr>
+
+                `)
+                .join("") ||
+
+              `
+                <tr>
+
+                  <td
+                    colspan="4"
+                    style="text-align:center"
+                  >
+                    No data.
+                  </td>
+
+                </tr>
+              `
+            }
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    `;
+
+  }
+
+
+  /* SHOP-WISE */
+
+  const shopMap = {};
+
+  orders.forEach(o => {
+
+    const shopKey =
+      String(
+        o.shopCode ||
+        o.shopId ||
+        o.shopName ||
+        "Unknown Shop"
+      );
+
+    if(!shopMap[shopKey]){
+
+      shopMap[shopKey] = {
+
+        shopName:
+          o.shopName ||
+          "Unknown Shop",
+
+        area:
+          o.shopArea ||
+          "-",
+
+        code:
+          o.shopCode ||
+          "-",
+
+        orders:0,
+        qty:0,
+        sales:0,
+        cost:0
+
+      };
+
+    }
+
+    shopMap[shopKey].orders += 1;
+
+    shopMap[shopKey].sales +=
+      Number(o.invoicePrice) || 0;
+
+    (o.products || [])
+      .forEach(p => {
+
+        const product =
+          getMappedProduct(p);
+
+        const purchaseRate =
+          getProductPurchaseRate(
+            product,
+            o.date
+          );
+
+        shopMap[shopKey].qty +=
+          Number(p.qty) || 0;
+
+        shopMap[shopKey].cost +=
+          (Number(p.qty) || 0) *
+          purchaseRate;
+
+      });
+
+  });
+
+  const shopSummary =
+    document.getElementById(
+      "perfShopSummary"
+    );
+
+  if(shopSummary){
+
+    shopSummary.innerHTML = `
+
+      <div class="summary-table-wrapper">
+
+        <table class="summary-table">
+
+          <thead>
+
+            <tr>
+
+              <th>Shop</th>
+              <th>Area</th>
+
+              <th style="text-align:center">
+                Orders
+              </th>
+
+              <th style="text-align:center">
+                Total Qty
+              </th>
+
+              <th style="text-align:right">
+                Sales
+              </th>
+
+              <th style="text-align:right">
+                Cost
+              </th>
+
+              <th style="text-align:right">
+                Profit
+              </th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            ${
+              Object.values(shopMap)
+                .sort(
+                  (a,b) =>
+                    a.shopName.localeCompare(
+                      b.shopName
+                    )
+                )
+                .map(s => `
+
+                  <tr>
+
+                    <td>
+
+                      <strong>
+                        ${s.shopName}
+                      </strong>
+
+                      <div style="
+                        font-size:11px;
+                        color:var(--muted)
+                      ">
+                        Code: ${s.code}
+                      </div>
+
+                    </td>
+
+                    <td>
+                      ${s.area}
+                    </td>
+
+                    <td style="text-align:center">
+                      ${s.orders}
+                    </td>
+
+                    <td style="text-align:center">
+                      ${s.qty}
+                    </td>
+
+                    <td style="text-align:right">
+                      ₹${s.sales.toFixed(2)}
+                    </td>
+
+                    <td style="text-align:right">
+                      ₹${s.cost.toFixed(2)}
+                    </td>
+
+                    <td style="text-align:right">
+                      ₹${(
+                        s.sales -
+                        s.cost
+                      ).toFixed(2)}
+                    </td>
+
+                  </tr>
+
+                `).join("") ||
+
+              `
+                <tr>
+
+                  <td
+                    colspan="7"
+                    style="text-align:center"
+                  >
+                    No orders available.
+                  </td>
+
+                </tr>
+              `
+            }
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    `;
+
+  }
+}
+
+
+/* =========================================================
+   MANAGE ACCESS
+========================================================= */
+
+function saveUser(e){
+
+  e.preventDefault();
+
+  if(!requireAdmin()) return;
+
+  const username =
+    document.getElementById(
+      "newUsername"
+    ).value.trim();
+
+  const password =
+    document.getElementById(
+      "newPassword"
+    ).value;
+
+  const role =
+    document.getElementById(
+      "newRole"
+    ).value;
+
+  const users = getUsers();
+
+  if(
+    users.some(
+      u =>
+        String(u.username || "")
+          .toLowerCase() ===
+        username.toLowerCase()
+    )
+  ){
+
+    alert(
+      "Username already exists."
+    );
+
+    return;
+  }
+
+  users.push({
+
+    id:Date.now(),
+
+    username,
+
+    password,
+
+    role,
+
+    active:true
+
+  });
+
+  localStorage.setItem(
+    "app_users",
+    JSON.stringify(users)
+  );
+
+  e.target.reset();
+
+  renderUsers();
+
+  alert(
+    "User created successfully."
+  );
+}
+
+function toggleUser(id){
+
+  if(!requireAdmin()) return;
+
+  const current =
+    getCurrentUser();
+
+  if(
+    current &&
+    String(current.id) ===
+    String(id)
+  ){
+
+    alert(
+      "You cannot disable your own account."
+    );
+
+    return;
+  }
+
+  const users = getUsers();
+
+  const user =
+    users.find(
+      u =>
+        String(u.id) ===
+        String(id)
+    );
+
+  if(!user) return;
+
+  user.active =
+    user.active === false;
+
+  localStorage.setItem(
+    "app_users",
+    JSON.stringify(users)
+  );
+
+  renderUsers();
+}
+
+function deleteUser(id){
+
+  if(!requireAdmin()) return;
+
+  const current =
+    getCurrentUser();
+
+  if(
+    current &&
+    String(current.id) ===
+    String(id)
+  ){
+
+    alert(
+      "You cannot delete your own account."
+    );
+
+    return;
+  }
+
+  const users = getUsers();
+
+  const user =
+    users.find(
+      u =>
+        String(u.id) ===
+        String(id)
+    );
+
+  if(!user) return;
+
+  if(user.role === "admin"){
+
+    const admins =
+      users.filter(
+        u =>
+          u.role === "admin" &&
+          u.active !== false
+      );
+
+    if(admins.length <= 1){
+
+      alert(
+        "At least one active Admin must remain."
+      );
+
+      return;
+    }
+  }
+
+  if(
+    !confirm(
+      `Delete user ${user.username}?`
+    )
+  )
+    return;
+
+  localStorage.setItem(
+    "app_users",
+    JSON.stringify(
+      users.filter(
+        u =>
+          String(u.id) !==
+          String(id)
+      )
+    )
+  );
+
+  renderUsers();
+}
+
+function renderUsers(){
+
+  const container =
+    document.getElementById(
+      "usersList"
+    );
+
+  if(!container) return;
+
+  container.innerHTML =
+    getUsers()
+      .map(u => `
+
+        <div class="master-item">
+
+          <div class="master-info">
+
+            <h4>
+              👤 ${u.username}
+            </h4>
+
+            <p>
+
+              Role:
+
+              <span class="badge ${
+                u.role === "admin"
+                  ? "badge-admin"
+                  : "badge-user"
+              }">
+
+                ${u.role.toUpperCase()}
+
+              </span>
+
+              <span class="badge ${
+                u.active !== false
+                  ? "badge-active"
+                  : "badge-disabled"
+              }">
+
+                ${
+                  u.active !== false
+                    ? "ACTIVE"
+                    : "DISABLED"
+                }
+
+              </span>
+
+            </p>
+
+          </div>
+
+          <div class="access-actions">
+
+            <button
+              type="button"
+              class="btn btn-secondary btn-small"
+              onclick="toggleUser('${u.id}')"
+            >
+              ${
+                u.active !== false
+                  ? "Disable"
+                  : "Enable"
+              }
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-danger btn-small"
+              onclick="deleteUser('${u.id}')"
+            >
+              Delete
+            </button>
+
+          </div>
+
+        </div>
+
+      `)
+      .join("");
+}
+
+
+/* =========================================================
+   BACKUP
+========================================================= */
+
+function exportAppData(){
+
+  if(!requireAdmin()) return;
+
+  const data = {
+
+    shops:getShops(),
+
+    products:getProducts(),
+
+    orders:getOrders(),
+
+    users:getUsers(),
+
+    offers:getOffers(),
+
+    exportDate:
+      new Date().toISOString()
+
+  };
+
+  const blob =
+    new Blob(
+      [
+        JSON.stringify(
+          data,
+          null,
+          2
+        )
+      ],
+      {
+        type:"application/json"
+      }
+    );
+
+  const url =
+    URL.createObjectURL(blob);
+
+  const a =
+    document.createElement("a");
+
+  a.href = url;
+
+  a.download =
+    `DevSales_Backup_${
+      new Date()
+        .toISOString()
+        .split("T")[0]
+    }.json`;
+
+  document.body.appendChild(a);
+
+  a.click();
+
+  a.remove();
+
+  setTimeout(
+    () => URL.revokeObjectURL(url),
+    100
+  );
+}
+
+function importAppData(e){
+
+  if(!requireAdmin()){
+
+    e.target.value = "";
+
+    return;
+  }
+
+  const file =
+    e.target.files[0];
+
+  if(!file) return;
+
+  const reader =
+    new FileReader();
+
+  reader.onload =
+    function(evt){
+
+      try{
+
+        const data =
+          JSON.parse(
+            evt.target.result
+          );
+
+        if(
+          !Array.isArray(data.shops) ||
+          !Array.isArray(data.products) ||
+          !Array.isArray(data.orders)
+        ){
+
+          alert(
+            "Invalid backup file."
+          );
+
+          return;
+        }
+
+        saveShopsData(data.shops);
+
+        saveProductsData(data.products);
+
+        saveOrdersData(data.orders);
+
+        if(Array.isArray(data.users)){
+
+          localStorage.setItem(
+            "app_users",
+            JSON.stringify(data.users)
+          );
+
+        }
+
+        if(Array.isArray(data.offers)){
+
+          localStorage.setItem(
+            "m_offers",
+            JSON.stringify(data.offers)
+          );
+
+        }
+
+        alert(
+          "✅ Data restored successfully."
+        );
+
+        location.reload();
+
+      }catch(err){
+
+        console.error(err);
+
+        alert(
+          "Unable to read backup file."
+        );
+
+      }
+
+    };
+
+  reader.readAsText(file);
+}
+
+function clearAllData(){
+
+  if(!requireAdmin()) return;
+
+  if(
+    !confirm(
+      "WARNING: This will delete all Shops, Products, Orders, and Offers. Continue?"
+    )
+  )
+    return;
+
+  localStorage.removeItem("m_shops");
+
+  localStorage.removeItem("m_products");
+
+  localStorage.removeItem("app_orders");
+
+  localStorage.removeItem("m_offers");
+
+  alert(
+    "Application data cleared."
+  );
+
+  location.reload();
+}
+
+
+/* =========================================================
+   PDF
+========================================================= */
+
+function triggerPDFExport(){
+
+  const content =
+    document.getElementById(
+      "factorySummaryContent"
+    );
+
+  if(
+    !content ||
+    !content.innerText.trim()
+  ){
+
+    alert(
+      "No factory summary available."
+    );
+
+    return;
+  }
+
+  window.print();
+}
+
+
+/* =========================================================
+   INITIALIZATION
+========================================================= */
+
+function setDefaultDates(){
+
+  const today =
+    new Date()
+      .toISOString()
+      .split("T")[0];
+
+  const orderDate =
+    document.getElementById(
+      "orderDate"
+    );
+
+  const factoryDate =
+    document.getElementById(
+      "factoryDate"
+    );
+
+  const perfDate =
+    document.getElementById(
+      "perfDate"
+    );
+
+  const perfMonth =
+    document.getElementById(
+      "perfMonth"
+    );
+
+  if(orderDate)
+    orderDate.value = today;
+
+  if(factoryDate)
+    factoryDate.value = today;
+
+  if(perfDate)
+    perfDate.value = today;
+
+  if(perfMonth)
+    perfMonth.value =
+      today.substring(0,7);
+}
+
+function initializeApp(){
+
+  const productEffectiveFrom =
+    document.getElementById(
+      "mProdEffectiveFrom"
+    );
+
+  if(
+    productEffectiveFrom &&
+    !productEffectiveFrom.value
+  ){
+
+    productEffectiveFrom.value =
+      new Date()
+        .toISOString()
+        .slice(0,10);
+
+  }
+
+  const offerFrom =
+    document.getElementById(
+      "mOfferFrom"
+    );
+
+  if(
+    offerFrom &&
+    !offerFrom.value
+  ){
+
+    offerFrom.value =
+      new Date()
+        .toISOString()
+        .slice(0,10);
+
+  }
+
+  const user =
+    getCurrentUser();
+
+  if(!user){
+
+    document
+      .getElementById("loginScreen")
+      .classList.remove("hidden");
+
+    document
+      .getElementById("app")
+      .classList.add("hidden");
+
+    return;
+  }
+
+  document.getElementById(
+    "loggedUser"
+  ).innerText =
+    `${user.username} (${user.role})`;
+
+  applyPermissions();
+
+  setDefaultDates();
+
+  populateAreaLOV();
+
+  renderShopsList();
+
+  renderProductsList();
+
+  populateOfferProductSelect();
+
+  renderOffersMaster();
+
+  renderHistory();
+
+  renderFactorySummary();
+
+  renderPerformance();
+
+  renderUsers();
+
+  document
+    .querySelectorAll(".nav-item")
+    .forEach(btn => {
+
+      btn.onclick =
+        function(){
+
+          switchTab(
+            this.dataset.tab
+          );
+
+        };
+
+    });
+
+  const rows =
+    document.getElementById(
+      "productRowsContainer"
+    );
+
+  if(
+    rows &&
+    !rows.children.length
+  ){
+
+    addProductRow();
+
+  }
+
+  switchTab("add");
+}
+
+
+/* =========================================================
+   APP START
+========================================================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    getUsers();
+
+    const user =
+      getCurrentUser();
+
+    if(user){
+
+      document
+        .getElementById("loginScreen")
+        .classList.add("hidden");
+
+      document
+        .getElementById("app")
+        .classList.remove("hidden");
+
+      initializeApp();
+
+    }else{
+
+      document
+        .getElementById("loginUsername")
+        ?.focus();
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
