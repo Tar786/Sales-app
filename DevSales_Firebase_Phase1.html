@@ -1,0 +1,4663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#4f46e5">
+<title>Dev Sales Agencies</title>
+
+<style>
+:root{
+  --primary:#4f46e5;
+  --primary-dark:#3730a3;
+  --primary-light:#e0e7ff;
+  --accent:#059669;
+  --accent-light:#d1fae5;
+  --danger:#dc2626;
+  --danger-light:#fee2e2;
+  --warning:#d97706;
+  --purple:#7c3aed;
+  --purple-light:#ede9fe;
+  --bg:#f1f5f9;
+  --card:#fff;
+  --text:#0f172a;
+  --muted:#64748b;
+  --border:#cbd5e1;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  -webkit-tap-highlight-color:transparent;
+}
+
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  padding-bottom:80px;
+}
+
+button,input,select,textarea{font-family:inherit}
+
+.hidden{display:none!important}
+
+.app-header{
+  background:linear-gradient(135deg,var(--primary-dark),var(--primary));
+  color:#fff;
+  padding:12px 16px;
+  text-align:center;
+  position:sticky;
+  top:0;
+  z-index:20;
+  box-shadow:0 4px 12px rgba(79,70,229,.25);
+}
+
+.brand-title{
+  font-size:20px;
+  font-weight:800;
+  text-transform:uppercase;
+}
+
+.sub-title{
+  font-size:12px;
+  opacity:.9;
+  margin-top:3px;
+}
+
+.header-user{
+  position:absolute;
+  right:10px;
+  top:10px;
+  font-size:10px;
+  opacity:.9;
+  cursor:pointer;
+}
+
+.container{
+  max-width:750px;
+  margin:auto;
+  padding:12px;
+}
+
+.tab-content{display:none}
+.tab-content.active{display:block!important}
+
+.card{
+  background:var(--card);
+  border-radius:14px;
+  padding:16px;
+  margin-bottom:14px;
+  border:1px solid #e2e8f0;
+  box-shadow:0 2px 6px rgba(0,0,0,.04);
+}
+
+.section-title{
+  font-size:13px;
+  font-weight:800;
+  color:var(--primary);
+  margin-bottom:12px;
+  text-transform:uppercase;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.form-group{margin-bottom:12px}
+
+label{
+  display:block;
+  font-size:11px;
+  font-weight:700;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:5px;
+}
+
+input,select,textarea{
+  width:100%;
+  padding:11px 12px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  font-size:14px;
+  outline:none;
+  background:#fff;
+  color:var(--text);
+}
+
+input:focus,select:focus,textarea:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(79,70,229,.15);
+}
+
+textarea{
+  resize:vertical;
+  min-height:65px;
+}
+
+.btn{
+  width:100%;
+  padding:12px;
+  border:0;
+  border-radius:10px;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+}
+
+.btn-primary{background:var(--primary);color:#fff}
+.btn-success{background:var(--accent);color:#fff}
+.btn-secondary{background:#64748b;color:#fff}
+.btn-danger{background:var(--danger);color:#fff}
+
+.btn-small{
+  width:auto;
+  padding:7px 11px;
+  font-size:12px;
+}
+
+.products-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+.btn-add-product{
+  background:var(--accent);
+  color:#fff;
+  border:0;
+  padding:7px 13px;
+  border-radius:8px;
+  font-size:12px;
+  font-weight:700;
+}
+
+.product-row{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr auto;
+  gap:6px;
+  align-items:center;
+  margin-bottom:8px;
+  background:#f8fafc;
+  padding:10px;
+  border-radius:10px;
+  border:1px solid #e2e8f0;
+}
+
+.product-row input,
+.product-row select{
+  padding:8px;
+  font-size:12px;
+}
+
+.btn-del-row{
+  background:var(--danger-light);
+  color:var(--danger);
+  border:1px solid #fca5a5;
+  border-radius:8px;
+  padding:8px 10px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.invoice-total-box{
+  background:linear-gradient(135deg,#e0e7ff,#ede9fe);
+  border:2px dashed var(--primary);
+  padding:12px 14px;
+  border-radius:10px;
+  margin-top:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.invoice-total-box strong{
+  color:var(--primary-dark);
+}
+
+.badge{
+  display:inline-block;
+  padding:3px 8px;
+  border-radius:6px;
+  font-size:10px;
+  font-weight:700;
+}
+
+.badge-area{background:var(--purple-light);color:var(--purple)}
+.badge-code{background:var(--primary-light);color:var(--primary-dark)}
+.badge-type{background:#fef3c7;color:#b45309}
+.badge-admin{background:#fee2e2;color:#b91c1c}
+.badge-user{background:#dbeafe;color:#1d4ed8}
+.badge-active{background:#d1fae5;color:#047857}
+.badge-disabled{background:#e2e8f0;color:#475569}
+
+.master-item{
+  background:#fff;
+  border-radius:12px;
+  padding:12px;
+  margin-bottom:10px;
+  border:1px solid #e2e8f0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.master-info h4{font-size:15px}
+.master-info p{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:3px;
+}
+
+.area-group-header{
+  font-size:13px;
+  font-weight:800;
+  color:var(--purple);
+  background:var(--purple-light);
+  padding:6px 12px;
+  border-radius:8px;
+  margin:12px 0 8px;
+  display:inline-block;
+}
+
+.summary-table-wrapper{
+  width:100%;
+  overflow-x:auto;
+}
+
+.summary-table{
+  width:100%;
+  min-width:560px;
+  border-collapse:collapse;
+  font-size:12px;
+}
+
+.summary-table th,
+.summary-table td{
+  border:1px solid var(--border);
+  padding:8px;
+}
+
+.summary-table th{
+  background:#f8fafc;
+  color:var(--muted);
+  font-size:10px;
+  text-transform:uppercase;
+}
+
+.summary-table .total-row td{
+  background:#eef2ff;
+  color:var(--primary-dark);
+  font-weight:800;
+}
+
+.shop-header{
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+  border-radius:10px;
+  padding:10px;
+  margin-bottom:8px;
+}
+
+.nav-bar{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:65px;
+  background:#fff;
+  border-top:1px solid var(--border);
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  z-index:1000;
+  box-shadow:0 -2px 10px rgba(0,0,0,.05);
+  overflow-x:auto;
+}
+
+.nav-item{
+  flex:1;
+  min-width:55px;
+  text-align:center;
+  padding:6px 2px;
+  color:var(--muted);
+  font-size:9px;
+  font-weight:700;
+  cursor:pointer;
+  border:0;
+  background:none;
+}
+
+.nav-item.active{color:var(--primary)}
+
+.nav-item svg{
+  display:block;
+  margin:0 auto 3px;
+  width:19px;
+  height:19px;
+  fill:currentColor;
+}
+
+.login-screen{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(135deg,#312e81,#4f46e5);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:9999;
+}
+
+.login-box{
+  width:100%;
+  max-width:400px;
+  background:#fff;
+  border-radius:20px;
+  padding:25px;
+  box-shadow:0 20px 50px rgba(0,0,0,.25);
+}
+
+.login-logo{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.login-logo h1{
+  color:var(--primary-dark);
+  font-size:24px;
+}
+
+.login-logo p{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:4px;
+}
+
+.login-error{
+  background:var(--danger-light);
+  color:var(--danger);
+  padding:9px;
+  border-radius:8px;
+  font-size:12px;
+  margin-bottom:12px;
+  display:none;
+}
+
+.access-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.access-actions{
+  display:flex;
+  gap:5px;
+  flex-wrap:wrap;
+}
+
+@media(max-width:600px){
+  .product-row{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .product-row>div:first-child{
+    grid-column:1/-1;
+  }
+
+  .product-row .btn-del-row{
+    grid-column:1/-1;
+  }
+
+  .header-user{
+    position:static;
+    margin-top:3px;
+  }
+
+  .nav-item{
+    min-width:58px;
+  }
+}
+
+@media print{
+  body *{visibility:hidden}
+  #factorySummaryContent,
+  #factorySummaryContent *{
+    visibility:visible;
+  }
+
+  #factorySummaryContent{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+  }
+
+  .no-print,
+  .app-header,
+  .nav-bar,
+  .btn-pdf{
+    display:none!important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= LOGIN ================= -->
+<div id="loginScreen" class="login-screen">
+
+  <div class="login-box">
+
+    <div class="login-logo">
+      <h1>Dev Sales Agencies</h1>
+      <p>Sales & Order Management</p>
+    </div>
+
+    <div id="loginError" class="login-error"></div>
+
+    <form onsubmit="login(event)">
+
+      <div class="form-group">
+        <label>Email / Username</label>
+        <input
+          type="text"
+          id="loginUsername"
+          autocomplete="username"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input
+          type="password"
+          id="loginPassword"
+          autocomplete="current-password"
+          required
+        >
+      </div>
+
+      <button class="btn btn-primary" type="submit">
+        🔐 Login
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+
+<!-- ================= MAIN APPLICATION ================= -->
+
+<div id="app" class="hidden">
+
+<header class="app-header">
+
+  <div class="brand-title">
+    Dev Sales Agencies
+  </div>
+
+  <div class="sub-title" id="headerTitle">
+    New Order Entry
+  </div>
+
+  <div
+    class="header-user"
+    onclick="logout()"
+    title="Logout"
+  >
+    👤 <span id="loggedUser"></span> | Logout
+  </div>
+
+</header>
+
+
+<div class="container">
+
+<!-- ================= NEW ORDER ================= -->
+
+<div id="addTab" class="tab-content active">
+
+<form id="orderForm" onsubmit="saveOrder(event)">
+
+<input type="hidden" id="editOrderId">
+
+<div class="card">
+
+<div class="section-title">
+🏪 Select Shop
+</div>
+
+<div class="form-group">
+
+<label>1. Select / Type Area</label>
+
+<input
+  type="text"
+  id="areaInput"
+  list="areaList"
+  placeholder="Type or select Area..."
+  oninput="onAreaSelect()"
+  required
+>
+
+<datalist id="areaList"></datalist>
+
+</div>
+
+
+<div class="form-group">
+
+<label>2. Choose Registered Shop</label>
+
+<select
+  id="shopSelect"
+  onchange="onShopSelect()"
+  required
+  disabled
+>
+<option value="">-- Select Area First --</option>
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Date of Order</label>
+
+<input
+  type="date"
+  id="orderDate"
+  required
+>
+
+</div>
+
+
+<div style="background:#f8fafc;padding:12px;border-radius:10px">
+
+<p style="font-size:12px;margin-bottom:4px">
+<strong>Shop Code:</strong>
+<span id="dispShopCode" class="badge badge-code">-</span>
+</p>
+
+<p style="font-size:12px;margin-bottom:4px">
+<strong>Area:</strong>
+<span id="dispArea" class="badge badge-area">-</span>
+</p>
+
+<p style="font-size:12px;margin-bottom:4px">
+<strong>Owner:</strong>
+<span id="dispShopOwner">-</span>
+</p>
+
+<p style="font-size:12px;margin-bottom:4px">
+<strong>Mobile:</strong>
+<span id="dispMobileNo">-</span>
+</p>
+
+<p style="font-size:12px">
+<strong>Address:</strong>
+<span id="dispAddress">-</span>
+</p>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="products-header">
+
+<div class="section-title" style="margin-bottom:0">
+📦 Order Items
+</div>
+
+<button
+  type="button"
+  class="btn-add-product"
+  onclick="addProductRow()"
+>
++ Add Product
+</button>
+
+</div>
+
+<div id="productRowsContainer"></div>
+
+<div class="invoice-total-box">
+
+<strong>
+TOTAL INVOICE AMOUNT
+</strong>
+
+<strong>
+₹<span id="grandInvoicePrice">0.00</span>
+</strong>
+
+</div>
+
+</div>
+
+
+<button
+  type="submit"
+  id="saveOrderBtn"
+  class="btn btn-primary"
+>
+💾 Save Daily Order
+</button>
+
+</form>
+
+</div>
+
+
+<!-- ================= HISTORY ================= -->
+
+<div id="historyTab" class="tab-content">
+
+<div class="no-print" style="margin-bottom:12px">
+
+<input
+  type="text"
+  id="filterSearch"
+  placeholder="🔍 Search Shop, Area or Code..."
+  oninput="renderHistory()"
+>
+
+</div>
+
+<div id="historyList"></div>
+
+</div>
+
+
+<!-- ================= FACTORY ================= -->
+
+<div id="factoryTab" class="tab-content">
+
+<div class="card no-print">
+
+<div class="section-title">
+🏭 Factory Dispatch Summary
+</div>
+
+<div class="form-group">
+
+<label>Select Summary Date</label>
+
+<input
+  type="date"
+  id="factoryDate"
+  onchange="renderFactorySummary()"
+>
+
+</div>
+
+<button
+  class="btn btn-success btn-pdf"
+  onclick="triggerPDFExport()"
+>
+📄 Save / Download PDF
+</button>
+
+</div>
+
+<div id="factorySummaryContent"></div>
+
+</div>
+
+
+<!-- ================= ANALYTICS ================= -->
+
+<div id="perfTab" class="tab-content">
+
+<div class="card">
+
+<div class="section-title">
+📈 Analytics Filter
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+
+<div>
+<label>Date</label>
+<input
+  type="date"
+  id="perfDate"
+  onchange="renderPerformance()"
+>
+</div>
+
+<div>
+<label>Month</label>
+<input
+  type="month"
+  id="perfMonth"
+  onchange="renderPerformance()"
+>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="section-title">
+📅 Day-Wise Sales
+</div>
+
+<div id="perfDaySummary"></div>
+
+</div>
+
+
+<div class="card">
+
+<div class="section-title">
+🗓️ Month-Wise Sales & Profit
+</div>
+
+<div id="perfMonthSummary"></div>
+
+</div>
+
+
+<div class="card">
+
+<div class="section-title">
+📊 Product-Wise Analytics
+</div>
+
+<div id="perfProductSummary"></div>
+
+</div>
+
+<div class="card">
+
+<div class="section-title">
+🏪 Shop-Wise Overall Order Summary
+</div>
+
+<div id="perfShopSummary"></div>
+
+</div>
+
+</div>
+
+
+<!-- ================= SHOPS ================= -->
+
+<div id="shopsMasterTab" class="tab-content">
+
+<div id="shopAddCard" class="card">
+
+<div class="section-title">
+➕ Add New Shop
+</div>
+
+<form onsubmit="saveShopMaster(event)">
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+
+<div class="form-group">
+<label>Shop Code</label>
+<input id="mShopCode" required>
+</div>
+
+<div class="form-group">
+<label>Area</label>
+<input id="mShopArea" required>
+</div>
+
+</div>
+
+<div class="form-group">
+<label>Shop Name</label>
+<input id="mShopName" required>
+</div>
+
+<div class="form-group">
+<label>Owner Name</label>
+<input id="mShopOwner" required>
+</div>
+
+<div class="form-group">
+<label>Mobile</label>
+<input type="tel" id="mMobileNo" required>
+</div>
+
+<div class="form-group">
+<label>Address</label>
+<textarea id="mShopAddress" required></textarea>
+</div>
+
+<button class="btn btn-primary">
+➕ Save Shop
+</button>
+
+</form>
+
+</div>
+
+<div class="section-title">
+🏪 Registered Shops
+</div>
+
+<div id="shopsMasterList"></div>
+
+</div>
+
+
+<!-- ================= PRODUCTS ================= -->
+
+<div id="productsMasterTab" class="tab-content">
+
+<div id="productAddCard" class="card">
+
+<div class="section-title">
+➕ Add New Product
+</div>
+
+<form onsubmit="saveProductMaster(event)">
+
+<div class="form-group">
+<label>Product Name</label>
+<input id="mProdName" required>
+</div>
+
+<div class="form-group">
+<label>Product Type</label>
+<input id="mProdType" required>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+
+<div class="form-group">
+<label>Purchase Rate</label>
+<input
+  type="number"
+  step="0.01"
+  id="mProdPurchase"
+  required
+>
+</div>
+
+<div class="form-group">
+<label>Selling Price</label>
+<input
+  type="number"
+  step="0.01"
+  id="mProdPrice"
+  required
+>
+</div>
+
+</div>
+
+<button class="btn btn-primary">
+➕ Save Product
+</button>
+
+</form>
+
+</div>
+
+<div class="section-title">
+📦 Product Catalog
+</div>
+
+<div id="productsMasterList"></div>
+
+</div>
+
+
+<!-- ================= MANAGE ACCESS ================= -->
+
+<div id="accessTab" class="tab-content">
+
+<div class="card">
+
+<div class="section-title">
+🔐 Manage Access
+</div>
+
+<form onsubmit="saveUser(event)">
+
+<div class="form-group">
+<label>Username</label>
+<input id="newUsername" required>
+</div>
+
+<div class="form-group">
+<label>Password</label>
+<input
+  type="password"
+  id="newPassword"
+  minlength="4"
+  required
+>
+</div>
+
+<div class="form-group">
+<label>Role</label>
+
+<select id="newRole">
+<option value="user">User</option>
+<option value="admin">Admin</option>
+</select>
+
+</div>
+
+<button class="btn btn-primary">
+➕ Add User
+</button>
+
+</form>
+
+</div>
+
+
+<div class="section-title">
+👥 Registered Users
+</div>
+
+<div id="usersList"></div>
+
+</div>
+
+
+<!-- ================= SETTINGS ================= -->
+
+<div id="settingsTab" class="tab-content">
+
+<div class="card">
+
+<div class="section-title">
+⚙️ Data Backup
+</div>
+
+<p style="font-size:12px;color:var(--muted);margin-bottom:12px">
+Backup Shops, Products and Orders as a JSON file.
+</p>
+
+<button
+  class="btn btn-primary"
+  onclick="exportAppData()"
+>
+📥 Export All Data
+</button>
+
+<div class="form-group" style="margin-top:15px">
+
+<label>Restore Backup</label>
+
+<input
+  type="file"
+  id="importFile"
+  accept=".json"
+  onchange="importAppData(event)"
+>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="section-title" style="color:var(--danger)">
+⚠️ Danger Zone
+</div>
+
+<button
+  class="btn btn-danger"
+  onclick="clearAllData()"
+>
+🗑️ Clear All Application Data
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= NAVIGATION ================= -->
+
+<nav class="nav-bar no-print">
+
+<button class="nav-item active" id="navAdd" data-tab="add">
+<span>➕</span>
+<div>Order</div>
+</button>
+
+<button class="nav-item" id="navHistory" data-tab="history">
+<span>📋</span>
+<div>History</div>
+</button>
+
+<button class="nav-item" id="navFactory" data-tab="factory">
+<span>🏭</span>
+<div>Factory</div>
+</button>
+
+<button class="nav-item" id="navPerf" data-tab="perf">
+<span>📊</span>
+<div>Analytics</div>
+</button>
+
+<button class="nav-item" id="navShops" data-tab="shops">
+<span>🏪</span>
+<div>Shops</div>
+</button>
+
+<button class="nav-item" id="navProducts" data-tab="products">
+<span>📦</span>
+<div>Products</div>
+</button>
+
+<button
+  class="nav-item"
+  id="navAccess"
+  data-tab="access"
+>
+<span>🔐</span>
+<div>Access</div>
+</button>
+
+<button
+  class="nav-item"
+  id="navSettings"
+  data-tab="settings"
+>
+<span>⚙️</span>
+<div>Backup</div>
+</button>
+
+</nav>
+
+</div>
+
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+  import {
+    getAuth,
+    onAuthStateChanged,
+    signInWithEmailAndPassword,
+    signOut
+  } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+  import {
+    getFirestore,
+    doc,
+    getDoc
+  } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBBkrNOlaIlxlDBqWdTW3mJTu-1gm3U2sg",
+    authDomain: "dsa-kot.firebaseapp.com",
+    projectId: "dsa-kot",
+    storageBucket: "dsa-kot.firebasestorage.app",
+    messagingSenderId: "969273383756",
+    appId: "1:969273383756:web:dd526e344a67277d0acde9"
+  };
+
+  const firebaseApp = initializeApp(firebaseConfig);
+  const auth = getAuth(firebaseApp);
+  const db = getFirestore(firebaseApp);
+
+  window.DSA_FIREBASE = {
+    auth,
+    db,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged,
+    doc,
+    getDoc
+  };
+</script>
+
+<script>
+
+/* =========================================================
+   AUTHENTICATION / ACCESS CONTROL
+========================================================= */
+
+/* Firebase Authentication is now the source of truth for login.
+   Firestore /users/{uid} stores role and active status. */
+
+function getUsers(){
+  // Temporary compatibility for the existing Manage Access / Backup UI.
+  try{
+    const data = JSON.parse(localStorage.getItem("app_users") || "null");
+    return Array.isArray(data) ? data : [];
+  }catch(e){
+    return [];
+  }
+}
+
+function getCurrentUser(){
+  try{
+    return JSON.parse(
+      sessionStorage.getItem("current_user") || "null"
+    );
+  }catch(e){
+    return null;
+  }
+}
+
+
+function isAdmin(){
+
+  const user =
+    getCurrentUser();
+
+  return user &&
+         user.role === "admin";
+
+}
+
+
+function isUser(){
+
+  const user =
+    getCurrentUser();
+
+  return user &&
+         user.role === "user";
+
+}
+
+
+async function login(e){
+
+  e.preventDefault();
+
+  const username =
+    document
+      .getElementById("loginUsername")
+      .value
+      .trim();
+
+  const password =
+    document
+      .getElementById("loginPassword")
+      .value;
+
+  const error =
+    document.getElementById("loginError");
+
+  error.style.display = "none";
+
+  try{
+
+    if(!window.DSA_FIREBASE){
+      throw new Error("Firebase is still loading. Please try again.");
+    }
+
+    // Phase 1: the existing Username field accepts the Firebase email.
+    const credential =
+      await window.DSA_FIREBASE.signInWithEmailAndPassword(
+        window.DSA_FIREBASE.auth,
+        username,
+        password
+      );
+
+    const userRef =
+      window.DSA_FIREBASE.doc(
+        window.DSA_FIREBASE.db,
+        "users",
+        credential.user.uid
+      );
+
+    const userSnap =
+      await window.DSA_FIREBASE.getDoc(userRef);
+
+    if(!userSnap.exists()){
+      await window.DSA_FIREBASE.signOut(window.DSA_FIREBASE.auth);
+      throw new Error("User profile not found in Firestore.");
+    }
+
+    const profile = userSnap.data();
+
+    if(profile.active === false){
+      await window.DSA_FIREBASE.signOut(window.DSA_FIREBASE.auth);
+      throw new Error("Your account is disabled.");
+    }
+
+    const appUser = {
+      id: credential.user.uid,
+      username: profile.username || credential.user.email || username,
+      email: credential.user.email || profile.email || "",
+      role: profile.role || "user"
+    };
+
+    sessionStorage.setItem(
+      "current_user",
+      JSON.stringify(appUser)
+    );
+
+    document
+      .getElementById("loginScreen")
+      .classList.add("hidden");
+
+    document
+      .getElementById("app")
+      .classList.remove("hidden");
+
+    initializeApp();
+
+  }catch(err){
+
+    console.error("Firebase login error:", err);
+
+    error.style.display = "block";
+    error.innerText =
+      err?.code === "auth/invalid-credential"
+        ? "Invalid email/password."
+        : (err?.message || "Unable to login.");
+
+  }
+}
+
+
+async function logout(){
+
+  if(!confirm("Do you want to logout?")) return;
+
+  try{
+    if(window.DSA_FIREBASE){
+      await window.DSA_FIREBASE.signOut(
+        window.DSA_FIREBASE.auth
+      );
+    }
+  }catch(err){
+    console.error("Firebase logout error:", err);
+  }
+
+  sessionStorage.removeItem("current_user");
+  location.reload();
+}
+
+
+
+/* =========================================================
+   PERMISSION CONTROL
+========================================================= */
+
+function applyPermissions(){
+
+  const admin =
+    isAdmin();
+
+
+  /* Admin-only navigation */
+
+  if(!admin){
+
+    document
+      .getElementById("navAccess")
+      ?.classList.add("hidden");
+
+    document
+      .getElementById("navSettings")
+      ?.classList.add("hidden");
+
+  }else{
+
+    document
+      .getElementById("navAccess")
+      ?.classList.remove("hidden");
+
+    document
+      .getElementById("navSettings")
+      ?.classList.remove("hidden");
+
+  }
+
+
+  /* Admin-only master creation */
+
+  document
+    .getElementById("shopAddCard")
+    ?.classList.toggle(
+      "hidden",
+      !admin
+    );
+
+
+  document
+    .getElementById("productAddCard")
+    ?.classList.toggle(
+      "hidden",
+      !admin
+    );
+
+}
+
+
+function requireAdmin(){
+
+  if(!isAdmin()){
+
+    alert(
+      "Admin access required."
+    );
+
+    return false;
+
+  }
+
+  return true;
+
+}
+
+
+/* =========================================================
+   DATA
+========================================================= */
+
+function getShops(){
+
+  try{
+
+    const data =
+      JSON.parse(
+        localStorage.getItem("m_shops") || "[]"
+      );
+
+    return Array.isArray(data)
+      ? data
+      : [];
+
+  }catch(e){
+
+    return [];
+
+  }
+
+}
+
+
+function saveShopsData(data){
+
+  localStorage.setItem(
+    "m_shops",
+    JSON.stringify(data)
+  );
+
+  populateAreaLOV();
+  renderShopsList();
+
+}
+
+
+function getProducts(){
+
+  try{
+
+    const data =
+      JSON.parse(
+        localStorage.getItem("m_products") || "[]"
+      );
+
+    return Array.isArray(data)
+      ? data
+      : [];
+
+  }catch(e){
+
+    return [];
+
+  }
+
+}
+
+
+function saveProductsData(data){
+
+  localStorage.setItem(
+    "m_products",
+    JSON.stringify(data)
+  );
+
+  renderProductsList();
+  refreshProductSelects();
+
+}
+
+
+function getOrders(){
+
+  try{
+
+    const data =
+      JSON.parse(
+        localStorage.getItem("app_orders") || "[]"
+      );
+
+    return Array.isArray(data)
+      ? data
+      : [];
+
+  }catch(e){
+
+    return [];
+
+  }
+
+}
+
+
+function saveOrdersData(data){
+
+  localStorage.setItem(
+    "app_orders",
+    JSON.stringify(data)
+  );
+
+  renderHistory();
+
+}
+
+
+/* =========================================================
+   TAB CONTROL
+========================================================= */
+
+function switchTab(tab){
+
+  const tabs = {
+
+    add:{
+      content:"addTab",
+      nav:"navAdd",
+      title:"New Order Entry"
+    },
+
+    history:{
+      content:"historyTab",
+      nav:"navHistory",
+      title:"Order History"
+    },
+
+    factory:{
+      content:"factoryTab",
+      nav:"navFactory",
+      title:"Factory Summary"
+    },
+
+    perf:{
+      content:"perfTab",
+      nav:"navPerf",
+      title:"Performance Analytics"
+    },
+
+    shops:{
+      content:"shopsMasterTab",
+      nav:"navShops",
+      title:"Shops Master"
+    },
+
+    products:{
+      content:"productsMasterTab",
+      nav:"navProducts",
+      title:"Products Master"
+    },
+
+    access:{
+      content:"accessTab",
+      nav:"navAccess",
+      title:"Manage Access"
+    },
+
+    settings:{
+      content:"settingsTab",
+      nav:"navSettings",
+      title:"Backup & Settings"
+    }
+
+  };
+
+
+  const target =
+    tabs[tab];
+
+
+  if(!target) return;
+
+
+  if(
+    (tab === "access" ||
+     tab === "settings" ||
+     tab === "shops" ||
+     tab === "products") &&
+    !isAdmin()
+  ){
+
+    alert(
+      "Admin access required."
+    );
+
+    return;
+
+  }
+
+
+  document
+    .querySelectorAll(".tab-content")
+    .forEach(
+      x =>
+        x.classList.remove("active")
+    );
+
+
+  document
+    .querySelectorAll(".nav-item")
+    .forEach(
+      x =>
+        x.classList.remove("active")
+    );
+
+
+  document
+    .getElementById(target.content)
+    ?.classList.add("active");
+
+
+  document
+    .getElementById(target.nav)
+    ?.classList.add("active");
+
+
+  document
+    .getElementById("headerTitle")
+    .innerText =
+    target.title;
+
+
+  if(tab === "history")
+    renderHistory();
+
+  if(tab === "factory")
+    renderFactorySummary();
+
+  if(tab === "perf")
+    renderPerformance();
+
+  if(tab === "shops")
+    renderShopsList();
+
+  if(tab === "products")
+    renderProductsList();
+
+  if(tab === "access")
+    renderUsers();
+
+  if(tab === "add"){
+    populateAreaLOV();
+    refreshProductSelects();
+  }
+
+}
+
+
+/* =========================================================
+   SHOP MASTER
+========================================================= */
+
+function saveShopMaster(e){
+
+  e.preventDefault();
+
+  if(!requireAdmin()) return;
+
+
+  const code =
+    document
+      .getElementById("mShopCode")
+      .value
+      .trim();
+
+
+  const area =
+    document
+      .getElementById("mShopArea")
+      .value
+      .trim();
+
+
+  const name =
+    document
+      .getElementById("mShopName")
+      .value
+      .trim();
+
+
+  const shops =
+    getShops();
+
+
+  if(
+    shops.some(
+      s =>
+        s.code &&
+        s.code.toLowerCase() ===
+        code.toLowerCase()
+    )
+  ){
+
+    alert(
+      "Shop code already exists."
+    );
+
+    return;
+
+  }
+
+
+  shops.push({
+
+    id:Date.now(),
+
+    code,
+
+    area,
+
+    name,
+
+    owner:
+      document
+        .getElementById("mShopOwner")
+        .value
+        .trim(),
+
+    mobile:
+      document
+        .getElementById("mMobileNo")
+        .value
+        .trim(),
+
+    address:
+      document
+        .getElementById("mShopAddress")
+        .value
+        .trim()
+
+  });
+
+
+  saveShopsData(shops);
+
+  e.target.reset();
+
+  alert(
+    "Shop added successfully."
+  );
+
+}
+
+
+function deleteShop(id){
+
+  if(!requireAdmin()) return;
+
+
+  if(
+    !confirm(
+      "Delete this shop?"
+    )
+  ) return;
+
+
+  saveShopsData(
+    getShops().filter(
+      s =>
+        String(s.id) !==
+        String(id)
+    )
+  );
+
+}
+
+
+function renderShopsList(){
+
+  const container =
+    document.getElementById(
+      "shopsMasterList"
+    );
+
+
+  if(!container) return;
+
+
+  const shops =
+    getShops();
+
+
+  if(!shops.length){
+
+    container.innerHTML =
+      `<p style="color:#94a3b8;font-size:12px">
+        No shops registered.
+      </p>`;
+
+    return;
+
+  }
+
+
+  const grouped = {};
+
+
+  shops.forEach(s => {
+
+    const area =
+      s.area || "Unassigned Area";
+
+
+    if(!grouped[area])
+      grouped[area] = [];
+
+
+    grouped[area].push(s);
+
+  });
+
+
+  let html = "";
+
+
+  Object.keys(grouped)
+    .sort()
+    .forEach(area => {
+
+      html += `
+        <div class="area-group-header">
+          📍 ${area}
+        </div>
+      `;
+
+
+      grouped[area].forEach(s => {
+
+        html += `
+
+          <div class="master-item">
+
+            <div class="master-info">
+
+              <h4>
+                ${s.name}
+                <span class="badge badge-code">
+                  ${s.code}
+                </span>
+              </h4>
+
+              <p>
+                👤 ${s.owner}
+                |
+                📞 ${s.mobile}
+              </p>
+
+              <p>
+                🏠 ${s.address}
+              </p>
+
+            </div>
+
+
+            ${
+              isAdmin()
+              ? `
+                <button
+                  class="btn-del-row"
+                  onclick="deleteShop('${s.id}')"
+                >
+                  ✕
+                </button>
+              `
+              : ""
+            }
+
+          </div>
+
+        `;
+
+      });
+
+    });
+
+
+  container.innerHTML =
+    html;
+
+}
+
+
+function populateAreaLOV(){
+
+  const list =
+    document.getElementById(
+      "areaList"
+    );
+
+
+  if(!list) return;
+
+
+  const areas =
+    [
+      ...new Set(
+        getShops()
+          .map(s => s.area)
+          .filter(Boolean)
+      )
+    ]
+    .sort();
+
+
+  list.innerHTML =
+    areas
+      .map(
+        a =>
+          `<option value="${a}">`
+      )
+      .join("");
+
+}
+
+
+function onAreaSelect(){
+
+  const area =
+    (
+      document
+        .getElementById("areaInput")
+        .value || ""
+    )
+    .trim()
+    .toLowerCase();
+
+
+  const select =
+    document.getElementById(
+      "shopSelect"
+    );
+
+
+  resetShopDetails();
+
+
+  if(!area){
+
+    select.disabled = true;
+
+    select.innerHTML =
+      `<option>
+        -- Select Area First --
+      </option>`;
+
+    return;
+
+  }
+
+
+  const shops =
+    getShops().filter(
+      s =>
+        s.area &&
+        s.area
+          .toLowerCase()
+          .includes(area)
+    );
+
+
+  if(!shops.length){
+
+    select.disabled = true;
+
+    select.innerHTML =
+      `<option>
+        -- No Shops Found --
+      </option>`;
+
+    return;
+
+  }
+
+
+  select.disabled = false;
+
+  select.innerHTML =
+    `<option value="">
+      -- Select Registered Shop --
+    </option>`;
+
+
+  shops.forEach(s => {
+
+    const opt =
+      document.createElement(
+        "option"
+      );
+
+    opt.value = s.id;
+
+    opt.textContent =
+      `${s.name} (${s.code})`;
+
+    select.appendChild(opt);
+
+  });
+
+}
+
+
+function onShopSelect(){
+
+  const id =
+    document
+      .getElementById("shopSelect")
+      .value;
+
+
+  const shop =
+    getShops().find(
+      s =>
+        String(s.id) ===
+        String(id)
+    );
+
+
+  if(!shop){
+
+    resetShopDetails();
+
+    return;
+
+  }
+
+
+  document.getElementById(
+    "dispShopCode"
+  ).innerText =
+    shop.code;
+
+
+  document.getElementById(
+    "dispArea"
+  ).innerText =
+    shop.area;
+
+
+  document.getElementById(
+    "dispShopOwner"
+  ).innerText =
+    shop.owner;
+
+
+  document.getElementById(
+    "dispMobileNo"
+  ).innerText =
+    shop.mobile;
+
+
+  document.getElementById(
+    "dispAddress"
+  ).innerText =
+    shop.address;
+
+}
+
+
+function resetShopDetails(){
+
+  [
+    "dispShopCode",
+    "dispArea",
+    "dispShopOwner",
+    "dispMobileNo",
+    "dispAddress"
+  ].forEach(id => {
+
+    const el =
+      document.getElementById(id);
+
+    if(el)
+      el.innerText = "-";
+
+  });
+
+}
+
+
+/* =========================================================
+   PRODUCT MASTER
+========================================================= */
+
+function saveProductMaster(e){
+
+  e.preventDefault();
+
+  if(!requireAdmin()) return;
+
+
+  const name =
+    document
+      .getElementById("mProdName")
+      .value
+      .trim();
+
+
+  const type =
+    document
+      .getElementById("mProdType")
+      .value
+      .trim();
+
+
+  const products =
+    getProducts();
+
+
+  const duplicate =
+    products.some(
+      p =>
+        p.name &&
+        p.type &&
+        p.name.toLowerCase() ===
+        name.toLowerCase() &&
+        p.type.toLowerCase() ===
+        type.toLowerCase()
+    );
+
+
+  if(duplicate){
+
+    alert(
+      "Product Name + Product Type already exists."
+    );
+
+    return;
+
+  }
+
+
+  products.push({
+
+    id:Date.now(),
+
+    name,
+
+    type,
+
+    purchaseRate:
+      Number(
+        document
+          .getElementById(
+            "mProdPurchase"
+          )
+          .value
+      ) || 0,
+
+    price:
+      Number(
+        document
+          .getElementById(
+            "mProdPrice"
+          )
+          .value
+      ) || 0
+
+  });
+
+
+  saveProductsData(products);
+
+  e.target.reset();
+
+  alert(
+    "Product added successfully."
+  );
+
+}
+
+
+function deleteProduct(id){
+
+  if(!requireAdmin()) return;
+
+
+  if(
+    !confirm(
+      "Delete this product?"
+    )
+  ) return;
+
+
+  saveProductsData(
+    getProducts().filter(
+      p =>
+        String(p.id) !==
+        String(id)
+    )
+  );
+
+}
+
+
+function renderProductsList(){
+
+  const container =
+    document.getElementById(
+      "productsMasterList"
+    );
+
+
+  if(!container) return;
+
+
+  const products =
+    getProducts();
+
+
+  if(!products.length){
+
+    container.innerHTML =
+      `<p style="color:#94a3b8;font-size:12px">
+        No products registered.
+      </p>`;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    products.map(p => `
+
+      <div class="master-item">
+
+        <div class="master-info">
+
+          <h4>
+            ${p.name}
+          </h4>
+
+          <p>
+            Type:
+            <span class="badge badge-type">
+              ${p.type}
+            </span>
+          </p>
+
+          <p>
+            Cost:
+            ₹${Number(p.purchaseRate || 0).toFixed(2)}
+          </p>
+
+        </div>
+
+
+        <div style="text-align:right">
+
+          <span class="badge badge-active">
+            ₹${Number(p.price || 0).toFixed(2)}
+          </span>
+
+          ${
+            isAdmin()
+            ? `
+              <br>
+              <button
+                class="btn-del-row"
+                style="margin-top:6px"
+                onclick="deleteProduct('${p.id}')"
+              >
+                ✕
+              </button>
+            `
+            : ""
+          }
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =========================================================
+   PRODUCT LOV
+   NAME + TYPE = UNIQUE IDENTIFIER
+========================================================= */
+
+function productOptions(selectedId=""){
+
+  return `
+    <option value="">
+      Select Product
+    </option>
+
+    ${
+      getProducts()
+        .map(p => {
+
+          const price =
+            Number(p.price) || 0;
+
+          return `
+            <option
+              value="${p.id}"
+              data-type="${getMappedProductType(p)}"
+              data-price="${price}"
+              ${String(p.id) === String(selectedId) ? "selected" : ""}
+            >
+              ${p.name} + ${getMappedProductType(p)} (₹${price.toFixed(2)})
+            </option>
+          `;
+
+        })
+        .join("")
+    }
+  `;
+
+}
+
+
+function refreshProductSelects(){
+
+  document
+    .querySelectorAll(".p-select")
+    .forEach(select => {
+
+      const old =
+        select.value;
+
+
+      select.innerHTML =
+        productOptions(old);
+
+
+      select.value =
+        old;
+
+    });
+
+}
+
+
+/* =========================================================
+   ORDER ENTRY
+========================================================= */
+
+function addProductRow(prefill=null){
+
+  const container =
+    document.getElementById(
+      "productRowsContainer"
+    );
+
+
+  const rowId =
+    Date.now() +
+    Math.floor(
+      Math.random()*1000
+    );
+
+
+  const div =
+    document.createElement("div");
+
+
+  div.className =
+    "product-row";
+
+
+  div.id =
+    `row-${rowId}`;
+
+
+  div.innerHTML = `
+
+    <div>
+
+      <select
+        class="p-select"
+        onchange="onProductSelect('row-${rowId}')"
+      >
+        ${productOptions(
+          prefill?.productId || ""
+        )}
+      </select>
+
+      <input
+        class="p-name"
+        placeholder="Product Name"
+        value="${prefill?.name || ""}"
+        required
+      >
+
+      <span class="badge badge-type p-type-badge">
+        ${prefill?.type || "Type: -"}
+      </span>
+
+      <input
+        type="hidden"
+        class="p-type-input"
+        value="${prefill?.type || ""}"
+      >
+
+      <input
+        type="hidden"
+        class="p-product-id"
+        value="${prefill?.productId || ""}"
+      >
+
+    </div>
+
+
+    <input
+      type="number"
+      class="p-qty"
+      placeholder="Qty"
+      min="1"
+      value="${prefill?.qty || 1}"
+      oninput="calculateTotals()"
+      required
+    >
+
+
+    <input
+      type="number"
+      class="p-price"
+      placeholder="Price"
+      step="0.01"
+      min="0"
+      value="${prefill?.price || "0.00"}"
+      oninput="calculateTotals()"
+      required
+    >
+
+
+    <input
+      type="number"
+      class="p-total"
+      placeholder="Total"
+      value="${prefill?.total || "0.00"}"
+      readonly
+    >
+
+
+    <button
+      type="button"
+      class="btn-del-row"
+      onclick="removeProductRow('row-${rowId}')"
+    >
+      ✕
+    </button>
+
+  `;
+
+
+  container.appendChild(div);
+
+
+  if(prefill?.productId){
+
+    const select =
+      div.querySelector(
+        ".p-select"
+      );
+
+    select.value =
+      prefill.productId;
+
+  }
+
+
+  calculateTotals();
+
+}
+
+
+function onProductSelect(rowId){
+
+  const row =
+    document.getElementById(
+      rowId
+    );
+
+
+  if(!row) return;
+
+
+  const select =
+    row.querySelector(
+      ".p-select"
+    );
+
+
+  const product =
+    getProducts().find(
+      p =>
+        String(p.id) ===
+        String(select.value)
+    );
+
+
+  if(!product) return;
+
+
+  row.querySelector(
+    ".p-name"
+  ).value =
+    product.name;
+
+
+  row.querySelector(
+    ".p-type-input"
+  ).value =
+    product.type;
+
+
+  row.querySelector(
+    ".p-type-badge"
+  ).innerText =
+    product.type;
+
+
+  row.querySelector(
+    ".p-price"
+  ).value =
+    Number(product.price) || 0;
+
+
+  row.querySelector(
+    ".p-product-id"
+  ).value =
+    product.id;
+
+
+  calculateTotals();
+
+}
+
+
+function removeProductRow(id){
+
+  const container =
+    document.getElementById(
+      "productRowsContainer"
+    );
+
+
+  if(
+    container.children.length <= 1
+  ){
+
+    alert(
+      "At least one product is required."
+    );
+
+    return;
+
+  }
+
+
+  document
+    .getElementById(id)
+    ?.remove();
+
+
+  calculateTotals();
+
+}
+
+
+function calculateTotals(){
+
+  let total = 0;
+
+
+  document
+    .querySelectorAll(".product-row")
+    .forEach(row => {
+
+      const qty =
+        Number(
+          row.querySelector(
+            ".p-qty"
+          ).value
+        ) || 0;
+
+
+      const price =
+        Number(
+          row.querySelector(
+            ".p-price"
+          ).value
+        ) || 0;
+
+
+      const lineTotal =
+        qty * price;
+
+
+      row.querySelector(
+        ".p-total"
+      ).value =
+        lineTotal.toFixed(2);
+
+
+      total += lineTotal;
+
+    });
+
+
+  document.getElementById(
+    "grandInvoicePrice"
+  ).innerText =
+    total.toFixed(2);
+
+
+  return total;
+
+}
+
+
+/* =========================================================
+   PRODUCT TYPE RESOLUTION
+   PRODUCT MASTER IS THE SOURCE OF TRUTH
+========================================================= */
+
+function getMappedProduct(product){
+  const products = getProducts();
+  if(product?.productId){
+    const byId = products.find(p => String(p.id) === String(product.productId));
+    if(byId) return byId;
+  }
+  const name = String(product?.name || "").trim().toLowerCase();
+  if(name){
+    const byName = products.filter(p => String(p.name || "").trim().toLowerCase() === name);
+    if(byName.length === 1) return byName[0];
+    const byNameAndType = byName.find(p => String(p.type || "").trim().toLowerCase() === String(product?.type || "").trim().toLowerCase());
+    if(byNameAndType) return byNameAndType;
+  }
+  return null;
+}
+
+function getMappedProductType(product){
+  const mapped = getMappedProduct(product);
+  return mapped?.type || product?.type || "General";
+}
+
+
+/* =========================================================
+   SAVE ORDER
+========================================================= */
+
+function saveOrder(e){
+
+  e.preventDefault();
+
+
+  const shopId =
+    document.getElementById(
+      "shopSelect"
+    ).value;
+
+
+  const shop =
+    getShops().find(
+      s =>
+        String(s.id) ===
+        String(shopId)
+    );
+
+
+  if(!shop){
+
+    alert(
+      "Please select a shop."
+    );
+
+    return;
+
+  }
+
+
+  const total =
+    calculateTotals();
+
+
+  if(total <= 0){
+
+    alert(
+      "Please add a valid product."
+    );
+
+    return;
+
+  }
+
+
+  const products = [];
+
+
+  document
+    .querySelectorAll(".product-row")
+    .forEach(row => {
+
+      products.push({
+
+        productId:
+          row.querySelector(
+            ".p-product-id"
+          ).value,
+
+        name:
+          row.querySelector(
+            ".p-name"
+          ).value.trim(),
+
+        type:
+          getMappedProductType({
+            productId: row.querySelector(".p-product-id").value,
+            name: row.querySelector(".p-name").value.trim(),
+            type: row.querySelector(".p-type-input").value
+          }),
+
+        qty:
+          Number(
+            row.querySelector(
+              ".p-qty"
+            ).value
+          ) || 0,
+
+        price:
+          Number(
+            row.querySelector(
+              ".p-price"
+            ).value
+          ) || 0,
+
+        total:
+          Number(
+            row.querySelector(
+              ".p-total"
+            ).value
+          ) || 0
+
+      });
+
+    });
+
+
+  const editId =
+    document.getElementById(
+      "editOrderId"
+    ).value;
+
+
+  let orders =
+    getOrders();
+
+
+  const order = {
+
+    id:
+      editId
+        ? Number(editId)
+        : Date.now(),
+
+    date:
+      document.getElementById(
+        "orderDate"
+      ).value,
+
+    shopCode:shop.code,
+
+    shopArea:shop.area,
+
+    shopName:shop.name,
+
+    shopOwner:shop.owner,
+
+    mobileNo:shop.mobile,
+
+    shopAddress:shop.address,
+
+    products,
+
+    invoicePrice:total
+
+  };
+
+
+  if(editId){
+
+    orders =
+      orders.filter(
+        o =>
+          String(o.id) !==
+          String(editId)
+      );
+
+  }
+
+
+  orders.unshift(order);
+
+  saveOrdersData(orders);
+
+
+  document
+    .getElementById(
+      "orderForm"
+    )
+    .reset();
+
+
+  document
+    .getElementById(
+      "editOrderId"
+    )
+    .value = "";
+
+
+  document
+    .getElementById(
+      "productRowsContainer"
+    )
+    .innerHTML = "";
+
+
+  addProductRow();
+
+  resetShopDetails();
+
+
+  document
+    .getElementById(
+      "saveOrderBtn"
+    )
+    .innerText =
+    "💾 Save Daily Order";
+
+
+  setDefaultDates();
+
+
+  alert(
+    editId
+      ? "✅ Order updated successfully."
+      : "✅ Order saved successfully."
+  );
+
+
+  switchTab("history");
+
+}
+
+
+/* =========================================================
+   ORDER HISTORY
+   DIRECT FULL TABLE - NO TOGGLE
+========================================================= */
+
+function renderHistory(){
+
+  const container =
+    document.getElementById(
+      "historyList"
+    );
+
+
+  if(!container) return;
+
+
+  const search =
+    (
+      document.getElementById(
+        "filterSearch"
+      )?.value || ""
+    ).toLowerCase();
+
+
+  const orders =
+    getOrders().filter(o => {
+
+      const text =
+        `${o.shopName || ""}
+         ${o.shopArea || ""}
+         ${o.shopCode || ""}`.toLowerCase();
+
+
+      return text.includes(search);
+
+    });
+
+
+  if(!orders.length){
+
+    container.innerHTML =
+      `<p style="text-align:center;color:#94a3b8;padding:20px">
+        No orders found.
+      </p>`;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    orders.map(order => {
+
+      const products =
+        Array.isArray(order.products)
+          ? order.products
+          : [];
+
+
+      const shopTotal =
+        products.reduce(
+          (sum,p) =>
+            sum +
+            Number(p.total || 0),
+          0
+        );
+
+
+      return `
+
+        <div class="card">
+
+          <div class="shop-header">
+
+            <strong style="font-size:16px">
+              ${order.shopName}
+            </strong>
+
+            <span class="badge badge-area">
+              ${order.shopArea}
+            </span>
+
+            <div style="font-size:12px;color:var(--muted);margin-top:5px">
+              👤 ${order.shopOwner}
+              |
+              📞 ${order.mobileNo}
+              |
+              Code: ${order.shopCode}
+              |
+              📅 ${order.date}
+            </div>
+
+            <div style="font-size:12px;color:var(--muted);margin-top:3px">
+              📍 ${order.shopAddress}
+            </div>
+
+          </div>
+
+
+          <div class="summary-table-wrapper">
+
+            <table class="summary-table">
+
+              <thead>
+
+                <tr>
+
+                  <th>Product</th>
+
+                  <th>Product Type</th>
+
+                  <th style="text-align:center">
+                    Ordered Qty
+                  </th>
+
+                  <th style="text-align:right">
+                    Unit Price
+                  </th>
+
+                  <th style="text-align:right">
+                    Total
+                  </th>
+
+                </tr>
+
+              </thead>
+
+
+              <tbody>
+
+                ${
+                  products.map(p => `
+
+                    <tr>
+
+                      <td>
+                        <strong>
+                          ${p.name}
+                        </strong>
+                      </td>
+
+                      <td>
+                        <span class="badge badge-type">
+                          ${getMappedProductType(p)}
+                        </span>
+                      </td>
+
+                      <td style="text-align:center">
+                        ${p.qty}
+                      </td>
+
+                      <td style="text-align:right">
+                        ₹${Number(p.price || 0).toFixed(2)}
+                      </td>
+
+                      <td style="text-align:right">
+                        ₹${Number(p.total || 0).toFixed(2)}
+                      </td>
+
+                    </tr>
+
+                  `).join("")
+                }
+
+
+                <tr class="total-row">
+
+                  <td
+                    colspan="4"
+                    style="text-align:right"
+                  >
+                    ALL PRODUCT TOTAL
+                  </td>
+
+                  <td style="text-align:right">
+                    ₹${shopTotal.toFixed(2)}
+                  </td>
+
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+
+          <div
+            style="
+              display:flex;
+              gap:8px;
+              margin-top:10px;
+            "
+          >
+
+            ${
+              isAdmin()
+              ? `
+
+                <button
+                  class="btn btn-secondary btn-small"
+                  onclick="editOrder('${order.id}')"
+                >
+                  ✏️ Edit
+                </button>
+
+                <button
+                  class="btn btn-danger btn-small"
+                  onclick="deleteOrder('${order.id}')"
+                >
+                  🗑️ Delete
+                </button>
+
+              `
+              : `
+                <span
+                  style="
+                    font-size:11px;
+                    color:var(--muted);
+                  "
+                >
+                  👁️ Read-only view
+                </span>
+              `
+            }
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+}
+
+
+/* =========================================================
+   EDIT / DELETE ORDER
+========================================================= */
+
+function editOrder(id){
+
+  if(!requireAdmin()) return;
+
+
+  const order =
+    getOrders().find(
+      o =>
+        String(o.id) ===
+        String(id)
+    );
+
+
+  if(!order) return;
+
+
+  switchTab("add");
+
+
+  document.getElementById(
+    "editOrderId"
+  ).value =
+    order.id;
+
+
+  document.getElementById(
+    "orderDate"
+  ).value =
+    order.date;
+
+
+  document.getElementById(
+    "areaInput"
+  ).value =
+    order.shopArea;
+
+
+  onAreaSelect();
+
+
+  const shop =
+    getShops().find(
+      s =>
+        s.code ===
+        order.shopCode
+    );
+
+
+  if(shop){
+
+    document.getElementById(
+      "shopSelect"
+    ).value =
+      shop.id;
+
+    onShopSelect();
+
+  }
+
+
+  const container =
+    document.getElementById(
+      "productRowsContainer"
+    );
+
+
+  container.innerHTML = "";
+
+
+  order.products.forEach(
+    p =>
+      addProductRow(p)
+  );
+
+
+  document.getElementById(
+    "saveOrderBtn"
+  ).innerText =
+    "💾 Update Order Changes";
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+function deleteOrder(id){
+
+  if(!requireAdmin()) return;
+
+
+  if(
+    !confirm(
+      "Delete this order permanently?"
+    )
+  ) return;
+
+
+  saveOrdersData(
+    getOrders().filter(
+      o =>
+        String(o.id) !==
+        String(id)
+    )
+  );
+
+}
+
+
+/* =========================================================
+   FACTORY SUMMARY
+   DIRECT TABLES - NO TOGGLE
+========================================================= */
+
+function renderFactorySummary(){
+
+  const date =
+    document.getElementById(
+      "factoryDate"
+    ).value;
+
+
+  const orders =
+    getOrders().filter(
+      o =>
+        o.date === date
+    );
+
+
+  const container =
+    document.getElementById(
+      "factorySummaryContent"
+    );
+
+
+  if(!orders.length){
+
+    container.innerHTML =
+      `<div class="card">
+        <p style="text-align:center;color:#94a3b8">
+          No orders for ${date}.
+        </p>
+      </div>`;
+
+    return;
+
+  }
+
+
+  /* Factory-level aggregation */
+
+  const factoryMap = {};
+
+
+  orders.forEach(order => {
+
+    (order.products || [])
+      .forEach(p => {
+
+        const key =
+          `${p.name}|||${getMappedProductType(p)}`;
+
+
+        if(!factoryMap[key]){
+
+          factoryMap[key] = {
+
+            name:p.name,
+
+            type:p.type || "General",
+
+            qty:0,
+
+            price:Number(p.price)||0,
+
+            total:0
+
+          };
+
+        }
+
+
+        factoryMap[key].qty +=
+          Number(p.qty)||0;
+
+
+        factoryMap[key].total +=
+          Number(p.total)||0;
+
+
+        factoryMap[key].price =
+          Number(p.price) ||
+          factoryMap[key].price;
+
+      });
+
+  });
+
+
+  const factoryTotal =
+    Object.values(factoryMap)
+      .reduce(
+        (sum,p) =>
+          sum +
+          Number(p.total || 0),
+        0
+      );
+
+
+  /* Area grouping */
+
+  const areas = {};
+
+
+  orders.forEach(order => {
+
+    const area =
+      order.shopArea ||
+      "Unassigned Area";
+
+
+    if(!areas[area])
+      areas[area] = [];
+
+
+    areas[area].push(order);
+
+  });
+
+
+  let html = `
+
+    <div class="card">
+
+      <div style="text-align:center">
+
+        <h2 style="color:var(--primary-dark)">
+          DEV SALES AGENCIES
+        </h2>
+
+        <h3 style="font-size:13px;color:var(--muted)">
+          FACTORY DISPATCH SUMMARY
+        </h3>
+
+        <p style="font-size:12px;font-weight:bold;margin-top:5px">
+          Dispatch Date: ${date}
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- FACTORY TOTAL -->
+
+    <div class="card">
+
+      <div class="section-title">
+        📦 Total Factory Required Dispatch
+      </div>
+
+      <div class="summary-table-wrapper">
+
+        <table class="summary-table">
+
+          <thead>
+
+            <tr>
+
+              <th>Product</th>
+
+              <th>Product Type</th>
+
+              <th style="text-align:center">
+                Ordered Qty
+              </th>
+
+              <th style="text-align:right">
+                Unit Price
+              </th>
+
+              <th style="text-align:right">
+                Total
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+
+            ${
+              Object.values(factoryMap)
+                .map(p => `
+
+                  <tr>
+
+                    <td>
+                      <strong>
+                        ${p.name}
+                      </strong>
+                    </td>
+
+                    <td>
+                      <span class="badge badge-type">
+                        ${p.type}
+                      </span>
+                    </td>
+
+                    <td style="text-align:center">
+                      ${p.qty}
+                    </td>
+
+                    <td style="text-align:right">
+                      ₹${p.price.toFixed(2)}
+                    </td>
+
+                    <td style="text-align:right">
+                      ₹${p.total.toFixed(2)}
+                    </td>
+
+                  </tr>
+
+                `).join("")
+            }
+
+
+            <tr class="total-row">
+
+              <td
+                colspan="4"
+                style="text-align:right"
+              >
+                TOTAL FACTORY PRODUCT VALUE
+              </td>
+
+              <td style="text-align:right">
+                ₹${factoryTotal.toFixed(2)}
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  /* Shop-wise */
+
+  Object.keys(areas)
+    .sort()
+    .forEach(area => {
+
+      html += `
+
+        <div class="card">
+
+          <div class="section-title">
+            📍 Area: ${area}
+          </div>
+
+      `;
+
+
+      areas[area].forEach(order => {
+
+        const products =
+          order.products || [];
+
+
+        const shopTotal =
+          products.reduce(
+            (sum,p) =>
+              sum +
+              Number(p.total || 0),
+            0
+          );
+
+
+        html += `
+
+          <div
+            class="shop-header"
+            style="margin-top:10px"
+          >
+
+            <strong style="font-size:15px">
+              🏪 ${order.shopName}
+            </strong>
+
+            <div style="font-size:11px;color:var(--muted);margin-top:4px">
+
+              👤 ${order.shopOwner}
+              |
+              📞 ${order.mobileNo}
+              |
+              Code: ${order.shopCode}
+
+            </div>
+
+            <div style="font-size:11px;color:var(--muted)">
+              📍 ${order.shopAddress}
+            </div>
+
+          </div>
+
+
+          <div class="summary-table-wrapper">
+
+            <table class="summary-table">
+
+              <thead>
+
+                <tr>
+
+                  <th>Product</th>
+
+                  <th>Product Type</th>
+
+                  <th style="text-align:center">
+                    Ordered Qty
+                  </th>
+
+                  <th style="text-align:right">
+                    Unit Price
+                  </th>
+
+                  <th style="text-align:right">
+                    Total
+                  </th>
+
+                </tr>
+
+              </thead>
+
+
+              <tbody>
+
+                ${
+                  products.map(p => `
+
+                    <tr>
+
+                      <td>
+                        <strong>
+                          ${p.name}
+                        </strong>
+                      </td>
+
+                      <td>
+                        <span class="badge badge-type">
+                          ${getMappedProductType(p)}
+                        </span>
+                      </td>
+
+                      <td style="text-align:center">
+                        ${p.qty}
+                      </td>
+
+                      <td style="text-align:right">
+                        ₹${Number(p.price||0).toFixed(2)}
+                      </td>
+
+                      <td style="text-align:right">
+                        ₹${Number(p.total||0).toFixed(2)}
+                      </td>
+
+                    </tr>
+
+                  `).join("")
+                }
+
+
+                <tr class="total-row">
+
+                  <td
+                    colspan="4"
+                    style="text-align:right"
+                  >
+                    ALL PRODUCT TOTAL
+                  </td>
+
+                  <td style="text-align:right">
+                    ₹${shopTotal.toFixed(2)}
+                  </td>
+
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        `;
+
+      });
+
+
+      html += `</div>`;
+
+    });
+
+
+  container.innerHTML =
+    html;
+
+}
+
+
+/* =========================================================
+   ANALYTICS
+========================================================= */
+
+function renderPerformance(){
+
+  const orders =
+    getOrders();
+
+
+  const date =
+    document.getElementById(
+      "perfDate"
+    ).value;
+
+
+  const month =
+    document.getElementById(
+      "perfMonth"
+    ).value;
+
+
+  const products =
+    getProducts();
+
+
+  const costMap = {};
+
+
+  products.forEach(p => {
+
+    costMap[
+      `${p.name}|||${getMappedProductType(p)}`
+    ] =
+      Number(p.purchaseRate)||0;
+
+  });
+
+
+  const dayOrders =
+    orders.filter(
+      o => o.date === date
+    );
+
+
+  let daySales = 0;
+  let dayCost = 0;
+
+
+  dayOrders.forEach(o => {
+
+    daySales +=
+      Number(o.invoicePrice)||0;
+
+
+    (o.products||[])
+      .forEach(p => {
+
+        const key =
+          `${p.name}|||${getMappedProductType(p)}`;
+
+
+        dayCost +=
+          Number(p.qty||0) *
+          Number(costMap[key]||0);
+
+      });
+
+  });
+
+
+  document.getElementById(
+    "perfDaySummary"
+  ).innerHTML = `
+
+    <div
+      style="
+        display:grid;
+        grid-template-columns:1fr 1fr 1fr;
+        gap:7px;
+        text-align:center
+      "
+    >
+
+      <div style="background:#e0e7ff;padding:10px;border-radius:8px">
+        <small>SALES</small>
+        <strong>₹${daySales.toFixed(2)}</strong>
+      </div>
+
+      <div style="background:#fee2e2;padding:10px;border-radius:8px">
+        <small>COST</small>
+        <strong>₹${dayCost.toFixed(2)}</strong>
+      </div>
+
+      <div style="background:#d1fae5;padding:10px;border-radius:8px">
+        <small>PROFIT</small>
+        <strong>₹${(daySales-dayCost).toFixed(2)}</strong>
+      </div>
+
+    </div>
+
+  `;
+
+
+  const monthOrders =
+    orders.filter(
+      o =>
+        o.date &&
+        o.date.startsWith(month)
+    );
+
+
+  let monthSales = 0;
+  let monthCost = 0;
+
+
+  monthOrders.forEach(o => {
+
+    monthSales +=
+      Number(o.invoicePrice)||0;
+
+
+    (o.products||[])
+      .forEach(p => {
+
+        const key =
+          `${p.name}|||${getMappedProductType(p)}`;
+
+
+        monthCost +=
+          Number(p.qty||0) *
+          Number(costMap[key]||0);
+
+      });
+
+  });
+
+
+  document.getElementById(
+    "perfMonthSummary"
+  ).innerHTML = `
+
+    <div class="invoice-total-box">
+
+      <strong>
+        MONTH SALES
+      </strong>
+
+      <strong>
+        ₹${monthSales.toFixed(2)}
+      </strong>
+
+    </div>
+
+    <div style="margin-top:8px;text-align:right;color:var(--accent);font-weight:bold">
+      Estimated Profit:
+      ₹${(monthSales-monthCost).toFixed(2)}
+    </div>
+
+  `;
+
+
+  const prodMap = {};
+
+
+  monthOrders.forEach(o => {
+
+    (o.products||[])
+      .forEach(p => {
+
+        const key =
+          `${p.name}|||${getMappedProductType(p)}`;
+
+
+        if(!prodMap[key]){
+
+          prodMap[key] = {
+            name:p.name,
+            type:getMappedProductType(p),
+            qty:0,
+            sales:0
+          };
+
+        }
+
+
+        prodMap[key].qty +=
+          Number(p.qty)||0;
+
+
+        prodMap[key].sales +=
+          Number(p.total)||0;
+
+      });
+
+  });
+
+
+  document.getElementById(
+    "perfProductSummary"
+  ).innerHTML = `
+
+    <div class="summary-table-wrapper">
+
+      <table class="summary-table">
+
+        <thead>
+
+          <tr>
+
+            <th>Product</th>
+            <th>Product Type</th>
+            <th>Qty</th>
+            <th>Sales</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          ${
+            Object.values(prodMap)
+              .map(p => `
+
+                <tr>
+
+                  <td>${p.name}</td>
+
+                  <td>
+                    <span class="badge badge-type">
+                      ${p.type}
+                    </span>
+                  </td>
+
+                  <td style="text-align:center">
+                    ${p.qty}
+                  </td>
+
+                  <td style="text-align:right">
+                    ₹${p.sales.toFixed(2)}
+                  </td>
+
+                </tr>
+
+              `)
+              .join("") ||
+              `
+                <tr>
+                  <td colspan="4" style="text-align:center">
+                    No data.
+                  </td>
+                </tr>
+              `
+          }
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  `;
+
+
+  /* Shop-wise order aggregation across all saved orders */
+  const shopMap = {};
+
+  orders.forEach(o => {
+    const shopKey = String(o.shopCode || o.shopId || o.shopName || "Unknown Shop");
+    if(!shopMap[shopKey]){
+      shopMap[shopKey] = {
+        shopName:o.shopName || "Unknown Shop",
+        area:o.shopArea || "-",
+        code:o.shopCode || "-",
+        orders:0, qty:0, sales:0, cost:0
+      };
+    }
+    shopMap[shopKey].orders += 1;
+    shopMap[shopKey].sales += Number(o.invoicePrice) || 0;
+    (o.products || []).forEach(p => {
+      const product = getMappedProduct(p);
+      shopMap[shopKey].qty += Number(p.qty) || 0;
+      shopMap[shopKey].cost += (Number(p.qty) || 0) * Number(product?.purchaseRate || 0);
+    });
+  });
+
+  document.getElementById("perfShopSummary").innerHTML = `
+    <div class="summary-table-wrapper">
+      <table class="summary-table">
+        <thead><tr>
+          <th>Shop</th><th>Area</th><th style="text-align:center">Orders</th>
+          <th style="text-align:center">Total Qty</th><th style="text-align:right">Sales</th>
+          <th style="text-align:right">Cost</th><th style="text-align:right">Profit</th>
+        </tr></thead>
+        <tbody>
+          ${Object.values(shopMap).sort((a,b)=>a.shopName.localeCompare(b.shopName)).map(s=>`
+            <tr>
+              <td><strong>${s.shopName}</strong><div style="font-size:11px;color:var(--muted)">Code: ${s.code}</div></td>
+              <td>${s.area}</td><td style="text-align:center">${s.orders}</td>
+              <td style="text-align:center">${s.qty}</td><td style="text-align:right">₹${s.sales.toFixed(2)}</td>
+              <td style="text-align:right">₹${s.cost.toFixed(2)}</td><td style="text-align:right">₹${(s.sales-s.cost).toFixed(2)}</td>
+            </tr>`).join("") || `
+            <tr><td colspan="7" style="text-align:center">No orders available.</td></tr>`}
+        </tbody>
+      </table>
+    </div>
+  `;
+
+}
+
+
+/* =========================================================
+   MANAGE ACCESS
+========================================================= */
+
+function saveUser(e){
+
+  e.preventDefault();
+
+  if(!requireAdmin()) return;
+
+
+  const username =
+    document
+      .getElementById(
+        "newUsername"
+      )
+      .value
+      .trim();
+
+
+  const password =
+    document
+      .getElementById(
+        "newPassword"
+      )
+      .value;
+
+
+  const role =
+    document
+      .getElementById(
+        "newRole"
+      )
+      .value;
+
+
+  const users =
+    getUsers();
+
+
+  if(
+    users.some(
+      u =>
+        u.username.toLowerCase() ===
+        username.toLowerCase()
+    )
+  ){
+
+    alert(
+      "Username already exists."
+    );
+
+    return;
+
+  }
+
+
+  users.push({
+
+    id:Date.now(),
+
+    username,
+
+    password,
+
+    role,
+
+    active:true
+
+  });
+
+
+  localStorage.setItem(
+    "app_users",
+    JSON.stringify(users)
+  );
+
+
+  e.target.reset();
+
+  renderUsers();
+
+  alert(
+    "User created successfully."
+  );
+
+}
+
+
+function toggleUser(id){
+
+  if(!requireAdmin()) return;
+
+
+  const current =
+    getCurrentUser();
+
+
+  if(
+    current &&
+    String(current.id) ===
+    String(id)
+  ){
+
+    alert(
+      "You cannot disable your own account."
+    );
+
+    return;
+
+  }
+
+
+  const users =
+    getUsers();
+
+
+  const user =
+    users.find(
+      u =>
+        String(u.id) ===
+        String(id)
+    );
+
+
+  if(!user) return;
+
+
+  user.active =
+    user.active === false;
+
+
+  localStorage.setItem(
+    "app_users",
+    JSON.stringify(users)
+  );
+
+
+  renderUsers();
+
+}
+
+
+function deleteUser(id){
+
+  if(!requireAdmin()) return;
+
+
+  const current =
+    getCurrentUser();
+
+
+  if(
+    current &&
+    String(current.id) ===
+    String(id)
+  ){
+
+    alert(
+      "You cannot delete your own account."
+    );
+
+    return;
+
+  }
+
+
+  const users =
+    getUsers();
+
+
+  const user =
+    users.find(
+      u =>
+        String(u.id) ===
+        String(id)
+    );
+
+
+  if(
+    user &&
+    user.role === "admin"
+  ){
+
+    const admins =
+      users.filter(
+        u =>
+          u.role === "admin" &&
+          u.active !== false
+      );
+
+
+    if(admins.length <= 1){
+
+      alert(
+        "At least one active Admin must remain."
+      );
+
+      return;
+
+    }
+
+  }
+
+
+  if(
+    !confirm(
+      `Delete user ${user?.username || ""}?`
+    )
+  ) return;
+
+
+  localStorage.setItem(
+    "app_users",
+    JSON.stringify(
+      users.filter(
+        u =>
+          String(u.id) !==
+          String(id)
+      )
+    )
+  );
+
+
+  renderUsers();
+
+}
+
+
+function renderUsers(){
+
+  const container =
+    document.getElementById(
+      "usersList"
+    );
+
+
+  if(!container) return;
+
+
+  container.innerHTML =
+    getUsers()
+      .map(u => `
+
+        <div class="master-item">
+
+          <div class="master-info">
+
+            <h4>
+              👤 ${u.username}
+            </h4>
+
+            <p>
+
+              Role:
+              <span
+                class="badge ${
+                  u.role === "admin"
+                    ? "badge-admin"
+                    : "badge-user"
+                }"
+              >
+                ${u.role.toUpperCase()}
+              </span>
+
+              <span
+                class="badge ${
+                  u.active !== false
+                    ? "badge-active"
+                    : "badge-disabled"
+                }"
+              >
+                ${
+                  u.active !== false
+                    ? "ACTIVE"
+                    : "DISABLED"
+                }
+              </span>
+
+            </p>
+
+          </div>
+
+
+          <div class="access-actions">
+
+            <button
+              class="btn btn-secondary btn-small"
+              onclick="toggleUser('${u.id}')"
+            >
+              ${
+                u.active !== false
+                  ? "Disable"
+                  : "Enable"
+              }
+            </button>
+
+
+            <button
+              class="btn btn-danger btn-small"
+              onclick="deleteUser('${u.id}')"
+            >
+              Delete
+            </button>
+
+          </div>
+
+        </div>
+
+      `)
+      .join("");
+
+}
+
+
+/* =========================================================
+   BACKUP
+========================================================= */
+
+function exportAppData(){
+
+  if(!requireAdmin()) return;
+
+
+  const data = {
+
+    shops:getShops(),
+
+    products:getProducts(),
+
+    orders:getOrders(),
+
+    users:getUsers(),
+
+    exportDate:
+      new Date().toISOString()
+
+  };
+
+
+  const blob =
+    new Blob(
+      [
+        JSON.stringify(
+          data,
+          null,
+          2
+        )
+      ],
+      {
+        type:"application/json"
+      }
+    );
+
+
+  const url =
+    URL.createObjectURL(blob);
+
+
+  const a =
+    document.createElement("a");
+
+
+  a.href = url;
+
+  a.download =
+    `DevSales_Backup_${
+      new Date()
+        .toISOString()
+        .split("T")[0]
+    }.json`;
+
+
+  a.click();
+
+  URL.revokeObjectURL(url);
+
+}
+
+
+function importAppData(e){
+
+  if(!requireAdmin()){
+
+    e.target.value = "";
+
+    return;
+
+  }
+
+
+  const file =
+    e.target.files[0];
+
+
+  if(!file) return;
+
+
+  const reader =
+    new FileReader();
+
+
+  reader.onload =
+    function(evt){
+
+      try{
+
+        const data =
+          JSON.parse(
+            evt.target.result
+          );
+
+
+        if(
+          !Array.isArray(data.shops) ||
+          !Array.isArray(data.products) ||
+          !Array.isArray(data.orders)
+        ){
+
+          alert(
+            "Invalid backup file."
+          );
+
+          return;
+
+        }
+
+
+        saveShopsData(
+          data.shops
+        );
+
+
+        saveProductsData(
+          data.products
+        );
+
+
+        saveOrdersData(
+          data.orders
+        );
+
+
+        if(
+          Array.isArray(data.users)
+        ){
+
+          localStorage.setItem(
+            "app_users",
+            JSON.stringify(
+              data.users
+            )
+          );
+
+        }
+
+
+        alert(
+          "✅ Data restored successfully."
+        );
+
+
+        location.reload();
+
+      }catch(err){
+
+        alert(
+          "Unable to read backup file."
+        );
+
+      }
+
+    };
+
+
+  reader.readAsText(file);
+
+}
+
+
+function clearAllData(){
+
+  if(!requireAdmin()) return;
+
+
+  if(
+    !confirm(
+      "WARNING: This will delete all Shops, Products and Orders. Continue?"
+    )
+  ) return;
+
+
+  /*
+    Keep authentication users.
+    Only application business data
+    is removed.
+  */
+
+  localStorage.removeItem(
+    "m_shops"
+  );
+
+  localStorage.removeItem(
+    "m_products"
+  );
+
+  localStorage.removeItem(
+    "app_orders"
+  );
+
+
+  alert(
+    "Application data cleared."
+  );
+
+
+  location.reload();
+
+}
+
+
+/* =========================================================
+   PDF
+========================================================= */
+
+function triggerPDFExport(){
+
+  const content =
+    document.getElementById(
+      "factorySummaryContent"
+    );
+
+
+  if(
+    !content ||
+    !content.innerText.trim()
+  ){
+
+    alert(
+      "No factory summary available."
+    );
+
+    return;
+
+  }
+
+
+  window.print();
+
+}
+
+
+/* =========================================================
+   INITIALIZATION
+========================================================= */
+
+function setDefaultDates(){
+
+  const today =
+    new Date()
+      .toISOString()
+      .split("T")[0];
+
+
+  document.getElementById(
+    "orderDate"
+  ).value = today;
+
+
+  document.getElementById(
+    "factoryDate"
+  ).value = today;
+
+
+  document.getElementById(
+    "perfDate"
+  ).value = today;
+
+
+  document.getElementById(
+    "perfMonth"
+  ).value =
+    today.substring(0,7);
+
+}
+
+
+function initializeApp(){
+
+  const user =
+    getCurrentUser();
+
+
+  if(!user){
+
+    document
+      .getElementById(
+        "loginScreen"
+      )
+      .classList.remove("hidden");
+
+    document
+      .getElementById(
+        "app"
+      )
+      .classList.add("hidden");
+
+    return;
+
+  }
+
+
+  document.getElementById(
+    "loggedUser"
+  ).innerText =
+    `${user.username} (${user.role})`;
+
+
+  applyPermissions();
+
+  setDefaultDates();
+
+  populateAreaLOV();
+
+  renderShopsList();
+
+  renderProductsList();
+
+  renderHistory();
+
+  renderFactorySummary();
+
+  renderPerformance();
+
+  renderUsers();
+
+
+  document
+    .querySelectorAll(
+      ".nav-item"
+    )
+    .forEach(btn => {
+
+      btn.onclick =
+        function(){
+
+          switchTab(
+            this.dataset.tab
+          );
+
+        };
+
+    });
+
+
+  const rows =
+    document.getElementById(
+      "productRowsContainer"
+    );
+
+
+  if(
+    rows &&
+    !rows.children.length
+  ){
+
+    addProductRow();
+
+  }
+
+
+  switchTab("add");
+
+}
+
+
+/* =========================================================
+   APP START
+========================================================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    // Firebase auth state is the source of truth.
+    window.DSA_FIREBASE.onAuthStateChanged(
+      window.DSA_FIREBASE.auth,
+      async (firebaseUser) => {
+
+        if(firebaseUser){
+
+          try{
+            const userRef =
+              window.DSA_FIREBASE.doc(
+                window.DSA_FIREBASE.db,
+                "users",
+                firebaseUser.uid
+              );
+
+            const snap =
+              await window.DSA_FIREBASE.getDoc(userRef);
+
+            if(!snap.exists() || snap.data().active === false){
+              await window.DSA_FIREBASE.signOut(
+                window.DSA_FIREBASE.auth
+              );
+              sessionStorage.removeItem("current_user");
+              return;
+            }
+
+            const profile = snap.data();
+            const user = {
+              id: firebaseUser.uid,
+              username: profile.username || firebaseUser.email || "User",
+              email: firebaseUser.email || profile.email || "",
+              role: profile.role || "user"
+            };
+
+            sessionStorage.setItem(
+              "current_user",
+              JSON.stringify(user)
+            );
+
+            document
+              .getElementById("loginScreen")
+              .classList.add("hidden");
+
+            document
+              .getElementById("app")
+              .classList.remove("hidden");
+
+            initializeApp();
+
+          }catch(err){
+            console.error("Firebase session error:", err);
+            sessionStorage.removeItem("current_user");
+          }
+
+        }else{
+
+          sessionStorage.removeItem("current_user");
+
+          document
+            .getElementById("loginScreen")
+            .classList.remove("hidden");
+
+          document
+            .getElementById("app")
+            .classList.add("hidden");
+
+          const input =
+            document.getElementById("loginUsername");
+
+          if(input) input.focus();
+        }
+      }
+    );
+
+  }
+);
+
+</script>
+
+</body>
+</html>
